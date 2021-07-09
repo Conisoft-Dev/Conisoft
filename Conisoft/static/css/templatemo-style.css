@@ -80,7 +80,7 @@ https://templatemo.com/tm-516-known
   }
 
   a:hover, a:active, a:focus {
-    color: #29ca8e;
+    color: #ca2216;
     outline: none;
   }
 
@@ -153,7 +153,7 @@ https://templatemo.com/tm-516-known
   }
 
   .entry-form .submit-btn:hover {
-    background: #3f51b5;
+    background: #0e3c80;
     color: #ffffff;
   }
 
@@ -258,7 +258,7 @@ https://templatemo.com/tm-516-known
 
   .custom-navbar {
     background: #ffffff;
-    border-top: 5px solid #29ca8e;
+    border-top: 5px solid #ca2216;
     border-bottom: 0;
     -webkit-box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
@@ -285,7 +285,7 @@ https://templatemo.com/tm-516-known
   }
 
   .custom-navbar .navbar-nav.navbar-right li a .fa {
-    background: #29ca8e;
+    background: #ca2216;
     border-radius: 100%;
     color: #ffffff;
     width: 30px;
@@ -309,12 +309,12 @@ https://templatemo.com/tm-516-known
   }
 
   .custom-navbar .nav li a:hover {
-    background-color: #29ca8e;
+    background-color: #ca2216;
     color: #ffffff;
   }
 
   .custom-navbar .nav li.active > a {
-    background-color: #29ca8e;
+    background-color: #ca2216;
     color: #ffffff;
   }
 
@@ -406,7 +406,7 @@ https://templatemo.com/tm-516-known
   }
 
   .feature-thumb span {
-    background: #3f51b5;
+    background: #0e3c80;
     border-radius: 50px;
     color: #ffffff;
     font-size: 25px;
@@ -444,7 +444,7 @@ https://templatemo.com/tm-516-known
   }
 
   #about figure span i {
-    background: #29ca8e;
+    background: #ca2216;
     border-radius: 50px;
     color: #ffffff;
     font-size: 25px;
@@ -580,7 +580,7 @@ https://templatemo.com/tm-516-known
   }
 
   .courses-price span {
-    background: #29ca8e;
+    background: #ca2216;
     border-radius: 2px;
     color: #ffffff;
     display: block;
@@ -588,7 +588,7 @@ https://templatemo.com/tm-516-known
   }
 
   .courses-price.free span {
-    background: #3f51b5;
+    background: #0e3c80;
   }
 
 
@@ -649,7 +649,7 @@ https://templatemo.com/tm-516-known
   }
 
   .tst-rating .fa {
-    color: #3f51b5;
+    color: #0e3c80;
   }
 
   .tst-image,
@@ -683,7 +683,7 @@ https://templatemo.com/tm-516-known
   -----------------------------------------*/
 
   #contact {
-    background: #3f51b5;
+    background: #0e3c80;
   }
 
   #contact h2 {
@@ -814,7 +814,7 @@ https://templatemo.com/tm-516-known
   }
 
   .newsletter-form input[type="submit"]:hover {
-    background: #29ca8e;
+    background: #ca2216;
     border-color: transparent;
   }
 
@@ -845,7 +845,7 @@ https://templatemo.com/tm-516-known
 
   .social-icon li a {
     border-radius: 100px;
-    color: #29ca8e;
+    color: #ca2216;
     font-size: 15px;
     width: 35px;
     height: 35px;
@@ -858,7 +858,7 @@ https://templatemo.com/tm-516-known
   }
 
   .social-icon li a:hover {
-    background: #29ca8e;
+    background: #ca2216;
     color: #ffffff;
   }
 
