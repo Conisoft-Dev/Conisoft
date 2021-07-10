@@ -354,8 +354,7 @@ https://templatemo.com/tm-516-known
     padding: 5px 0 40px 0;
   }
   #home .caption{
-    background-color: #252525;
-    opacity: .7;
+    background-color: #252525c7;
   }
   #home .container h1 h3{
     opacity: 1;
@@ -400,8 +399,38 @@ https://templatemo.com/tm-516-known
   .home-slider .item-third {
     background-image: url(../images/slider-image3.jpg);
   }
-
-
+  .conisoft-logo-container{
+    height: 25rem;
+    width: max-content;
+    position: absolute;
+    right: 10%;
+    bottom: 10%;
+  }
+  .sdgku-logo-container{
+    height: 10rem;
+    width: max-content;
+    position: absolute;
+    right: 5%;
+    top: 10%;
+  }
+  .ieee-logo-container{
+    height: 10rem;
+    width: max-content;
+    position: absolute;
+    right: 10%;
+    bottom: 10%;
+  }
+  .ieee-logo-2-container{
+    height: 10rem;
+    width: max-content;
+    position: absolute;
+    right: 10%;
+    bottom: 30%;
+  }
+  .conisoft-logo-container img, .sdgku-logo-container img, .ieee-logo-container img, .ieee-logo-2-container img{
+    height: 100%;
+    width: auto;
+  }
 
   /*---------------------------------------
       FEATURE              
