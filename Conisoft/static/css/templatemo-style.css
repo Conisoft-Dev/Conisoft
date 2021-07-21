@@ -381,12 +381,12 @@ section {
 }
 
 .home-slider .item-first {
-  background-image: url(../images/slider-image1.jpg);
+  background-image: url(../images/slider-image2.jpg);
   background-position: center;
 }
 
 .home-slider .item-second {
-  background-image: url(../images/slider-image2.jpg);
+  background-image: url(../images/slider-image1.jpg);
 }
 
 .home-slider .item-third {
