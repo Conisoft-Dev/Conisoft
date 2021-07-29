@@ -86,6 +86,13 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
+# Un-Comment to use new User model
+"""
+    This Completely changes the user authentication and the superusers as well,
+    if you uncomment this you will have to create a new superuser.
+ """
+# AUTH_USER_MODEL = 'mainApp.User'
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
