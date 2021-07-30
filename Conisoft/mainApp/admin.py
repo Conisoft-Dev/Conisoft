@@ -7,7 +7,8 @@ from .models import (
     Bullet,
     PaperRequirement,
     Topic,
-    Carosel
+    Carosel,
+    Attendee
     )
 
 # Register your models here.
@@ -19,4 +20,5 @@ admin.site.register(Bullet)
 admin.site.register(PaperRequirement)
 admin.site.register(Topic)
 admin.site.register(Carosel)
+admin.site.register(Attendee)
 

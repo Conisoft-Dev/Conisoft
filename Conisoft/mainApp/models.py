@@ -1,7 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import (
-    BaseUserManager, AbstractBaseUser
+    BaseUserManager, AbstractBaseUser, User
 )
+
+# user with foriegn key
+class Attendee(models.Model):
+    Full_Name = models.CharField(max_length=200)
+    industry_type = models.CharField(max_length=200)
+    presenter = models.BooleanField(default=False)
+    reciept = models.FileField()
+    guest = models.IntegerField(default=0)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE) # Foriegn Key to default user class
+
+    def __str__(self):
+        return self.name
+
 
 # Main Workshop Model
 class Worshop(models.Model):
@@ -26,7 +39,7 @@ class Carosel(models.Model):
     def __str__(self):
         return self.heading
 
-    # Topics below Carosel
+# Topics below Carosel
 class Topic(models.Model):
     name = models.CharField(max_length=200)
     about = models.CharField(max_length=500)
@@ -125,6 +138,11 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) # a admin user; non super-user
     admin = models.BooleanField(default=False) # a superuser
+    Full_Name = models.CharField(max_length=200)
+    industry_type = models.CharField(max_length=200)
+    presenter = models.BooleanField(default=False)
+    reciept = models.FileField()
+    guest = models.IntegerField(default=0)
 
 
     # notice the absence of a "Password field", that is built in.
