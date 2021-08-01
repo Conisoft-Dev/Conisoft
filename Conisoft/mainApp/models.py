@@ -33,8 +33,9 @@ class Worshop(models.Model):
 class Carosel(models.Model):
     heading = models.CharField(max_length=200)
     text = models.CharField(max_length=500)
-    background_image = models.URLField()
-    logo = models.URLField()
+    background_image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+    logo_image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100, default='path/to/my/default/image.jpg')
+
 
     def __str__(self):
         return self.heading
@@ -69,11 +70,12 @@ class Course(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
     presenter = models.CharField(max_length=200)
-    image = models.URLField()
-    presenter_image = models.URLField()
+    image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+    presenter_image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+
 
     def __str__(self):
-        return "course: %s presenter: %s" %(self.name, self.presenter)
+        return "%s by %s" %(self.name, self.presenter)
 
 # Previous additions
 
@@ -130,6 +132,9 @@ class UserManager(BaseUserManager):
         user.admin = True
         user.save(using=self._db)
         return user
+
+
+
 
 class User(AbstractBaseUser):
     email = models.EmailField(

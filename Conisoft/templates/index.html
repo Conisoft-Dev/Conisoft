@@ -9,60 +9,23 @@
      <div class="row">
 
           <div class="owl-carousel owl-theme home-slider">
-               <div class="item item-first">
-                    <div class="caption">
-                         <div class="container">
-                              <div class="col-md-6 col-sm-12">
-                                   <h1>CONISOFT 2021</h1>
-                                   <h3>Bringing together practitioners and researchers from academy, industry, and
-                                        government.<br>
-                                        <br>Advancing the state of the art in Software Engineering, generating synergy
-                                        between academy and industry.
-                                   </h3>
-                                   <a href="#feature" class="section-btn btn btn-default smoothScroll">Discover more</a>
-                              </div>
-                              <img src="{% static 'images/conisoft_logo.png' %}" style="width: 200px;">
-                         </div>
-                    </div>
-               </div>
-
+               {% for object in carosels %}
                <div class="item item-second">
                     <div class="caption">
                          <div class="container">
                               <div class="col-md-6 col-sm-12">
-                                   <h1>October 25-29, 2021</h1>
-                                   <h3>San Diego Global Knowledge University,<br>San Diego, CA, USA
-                                        <br><br>A collaboration strategy to support and promote the development of the
-                                        software industry in Mexico and worldwide.
+                                   <h1>{{ object.heading }}</h1>
+                                   <h3>{{ object.text }}
                                    </h3>
                                    <a href="#courses" class="section-btn btn btn-default smoothScroll">Take a course</a>
                               </div>
                               <div class="sdgku-logo-container">
-                                   <img src="{% static 'images/sdgku_logo.png' %}" class="logo" style="width: 500px;">
+                                   <img src="{{ object.logo_image.url }}" class="logo" style="width: 500px;">
                               </div>
                          </div>
                     </div>
                </div>
-
-               <div class="item item-third">
-                    <div class="caption">
-                         <div class="container">
-                              <div class="col-md-6 col-sm-12">
-                                   <h1>Efficient Learning Methods</h1>
-                                   <h3>Nam eget sapien vel nibh euismod vulputate in vel nibh. Quisque eu ex eu urna
-                                        venenatis sollicitudin ut at libero. Visit <a rel="nofollow"
-                                             href="https://www.facebook.com/templatemo">templatemo</a> page.</h3>
-                                   <a href="#contact" class="section-btn btn btn-default smoothScroll">Let's chat</a>
-                              </div>
-                              <div class="ieee-logo-2-container">
-                                   <img src="{% static 'images/ieee_logo_2.png' %}" style="width: 500px;">
-                              </div>
-                              <div class="ieee-logo-container">
-                                   <img src="{% static 'images/ieee_logo.png' %}" style="width: 500px;">
-                              </div>
-                         </div>
-                    </div>
-               </div>
+               {% endfor %}
           </div>
      </div>
 </section>
@@ -72,8 +35,17 @@
 <section id="feature">
      <div class="container">
           <div class="row">
-
+               {% for object in topics %}
                <div class="col-md-4 col-sm-4">
+                    <div class="feature-thumb">
+                         <span>{{ object.id }}</span>
+                         <h3>{{ object.name }}</h3>
+                         <p>{{ object.about }}</p>
+                    </div>
+               </div>
+               {% endfor %}
+
+               <!-- <div class="col-md-4 col-sm-4">
                     <div class="feature-thumb">
                          <span>01</span>
                          <h3>Core Themes</h3>
@@ -84,72 +56,7 @@
                          <p>Process models</p>
                          <p>Software metrics</p>
                     </div>
-               </div>
-
-               <div class="col-md-4 col-sm-4">
-                    <div class="feature-thumb">
-                         <span>02</span>
-                         <h3>Empirical Engineering</h3>
-                         <p>Empirical Methods</p>
-                         <p>Statistical Methods and Measurement</p>
-                         <p>Simulation Methods</p>
-                         <p>Missing Data in Software Engineering</p>
-                         <p>Experimentation in Software Engineering</p>
-                         <p>Human Factors in Software Engineering</p>
-                    </div>
-               </div>
-
-               <div class="col-md-4 col-sm-4">
-                    <div class="feature-thumb">
-                         <span>03</span>
-                         <h3>Engineering Trends</h3>
-                         <p>Complex recommendation systems</p>
-                         <p>Software Engineering for small & large mobile software applications and ecosystems</p>
-                         <p>Modelling and knowledge management</p>
-                         <p>Agents-based methodologies, natural language processing, machine learning</p>
-                         <p>Software Engineering for Cloud Computing, Big Data, Social Computing</p>
-                    </div>
-               </div>
-
-               <div class="col-md-4 col-sm-4">
-                    <div class="feature-thumb">
-                         <span>04</span>
-                         <h3>Other Disciplines</h3>
-                         <p>User-centered design: human-computer interaction, usability engineering</p>
-                         <p>Social Issues in software engineering: psychology, sociology</p>
-                    </div>
-               </div>
-
-               <div class="col-md-4 col-sm-4">
-                    <div class="feature-thumb">
-                         <span>05</span>
-                         <h3>Formal Methods</h3>
-                         <p>Theoretical basis for software engineering</p>
-                         <p>Formal methods for software engineering</p>
-                         <p>Experimental evaluation and validation</p>
-                         <p>The split between industry practice and academic research</p>
-                    </div>
-               </div>
-
-               <div class="col-md-4 col-sm-4">
-                    <div class="feature-thumb">
-                         <span>06</span>
-                         <h3>Software Engineering Education (SEE)</h3>
-                         <p>Models and Techniques for SEE</p>
-                         <p>Teaching approaches for SEE</p>
-                         <p>Tools for SEE</p>
-                         <p>Strategies and instruments for assessment SEE</p>
-                    </div>
-               </div>
-
-               <div class="col-md-4 col-sm-4">
-                    <div class="feature-thumb">
-                         <span>07</span>
-                         <h3>Industry and government experiences</h3>
-                         <p>Cases in industry and government</p>
-                         <p>Study cases in industry and government</p>
-                    </div>
-               </div>
+               </div> -->
           </div>
 </section>
 
@@ -162,27 +69,11 @@
                <div class="col-md-6 col-sm-12">
                     <div class="about-info">
                          <h2>Call for Papers</h2>
-
-                         <figure>
-                              <span><i class="fa fa-users"></i></span>
-                              <figcaption>
-                                   <h3>Modalities (Types of work)</h3>
-                                   <ul>
-                                        <li><strong>Track 1:</strong>
-                                             <p>Scientific papers (original research, basic and experimental).</p>
-                                        </li>
-                                        <li><strong>Track 2:</strong>
-                                             <p>Work in progress. Papers describing works that are at an early stage of
-                                                  the investigation.</p>
-                                        </li>
-                                   </ul>
-                              </figcaption>
-                         </figure>
-
+                         {% for object in requirements %}
                          <figure>
                               <span><i class="fa fa-certificate"></i></span>
                               <figcaption>
-                                   <h3>Submission Requirements</h3>
+                                   <h3>{{ object.heading }}</h3>
                                    <ul>
                                         <li><strong>Complete Document:</strong>
                                              <p>Must be submitted as full papers.</p>
@@ -196,29 +87,12 @@
                                    </ul>
                               </figcaption>
                          </figure>
-
-                         <figure>
-                              <span><i class="fa fa-bar-chart-o"></i></span>
-                              <figcaption>
-                                   <h3>Review Board</h3>
-                                   <ul>
-                                        <li><strong>Conditions:</strong>
-                                             <p>Submissions will be evaluated by the international reviewers committee.
-                                             </p>
-                                        </li>
-                                        <li><strong>Comittee:</strong>
-                                             <p>Composed of renowned researchers and professionals.</p>
-                                        </li>
-                                        <li><strong>Consult:</strong>
-                                             <p>Refer to the conference web page</p>
-                                        </li>
-
-                                   </ul>
-                              </figcaption>
-                         </figure>
+                         {% endfor %}
                     </div>
                </div>
 
+
+<!-- REGISTER -->
                <div class="col-md-offset-1 col-md-4 col-sm-12">
                     <div class="entry-form">
                          <form action="#" method="post">
@@ -241,7 +115,7 @@
      </div>
 </section>
 
-
+<!-- PLEASE DO NOT DELETE TEAM SECTION YET-->
 <!-- TEAM
 <section id="team">
      <div class="container">
@@ -334,65 +208,32 @@
                     <div class="section-title">
                          <h2>Popular Courses <small>Upgrade your skills with newest courses</small></h2>
                     </div>
-
+                    
                     <div class="owl-carousel owl-theme owl-courses">
+                         {% for object in courses %}
                          <div class="col-md-4 col-sm-4">
                               <div class="item">
                                    <div class="courses-thumb">
                                         <div class="courses-top">
                                              <div class="courses-image">
-                                                  <img src="{% static 'images/courses-image1.jpg' %}"
+                                                  <img src="{{ object.image.url }}"
                                                        class="img-responsive" alt="">
                                              </div>
                                              <div class="courses-date">
-                                                  <span><i class="fa fa-calendar"></i> 12 / 7 / 2018</span>
-                                                  <span><i class="fa fa-clock-o"></i> 7 Hours</span>
+                                                  <span><i class="fa fa-calendar"></i>{{ object.date }}</span>
+                                                  <span><i class="fa fa-clock-o"></i> {{ object.time_length }} Hours</span>
                                              </div>
                                         </div>
 
                                         <div class="courses-detail">
-                                             <h3><a href="#">Social Media Management</a></h3>
-                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                             <h3><a href="#">{{ object.name }}</a></h3>
+                                             <p>{{ object.description }}.</p>
                                         </div>
 
                                         <div class="courses-info">
                                              <div class="courses-author">
-                                                  <img src="{% static 'images/author-image1.jpg' %}"
-                                                       class="img-responsive" alt="">
-                                                  <span>Mark Wilson</span>
-                                             </div>
-                                             <div class="courses-price">
-                                                  <a href="#"><span>USD 25</span></a>
-                                             </div>
-                                        </div>
-                                   </div>
-                              </div>
-                         </div>
-
-                         <div class="col-md-4 col-sm-4">
-                              <div class="item">
-                                   <div class="courses-thumb">
-                                        <div class="courses-top">
-                                             <div class="courses-image">
-                                                  <img src="{% static 'images/courses-image2.jpg' %}"
-                                                       class="img-responsive" alt="">
-                                             </div>
-                                             <div class="courses-date">
-                                                  <span><i class="fa fa-calendar"></i> 20 / 7 / 2018</span>
-                                                  <span><i class="fa fa-clock-o"></i> 4.5 Hours</span>
-                                             </div>
-                                        </div>
-
-                                        <div class="courses-detail">
-                                             <h3><a href="#">Graphic & Web Design</a></h3>
-                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-
-                                        <div class="courses-info">
-                                             <div class="courses-author">
-                                                  <img src="{% static 'images/author-image2.jpg' %}"
-                                                       class="img-responsive" alt="">
-                                                  <span>Jessica</span>
+                                                  <img src='{{ object.presenter_image.url }}' class="img-responsive" alt="">
+                                                  <span>{{ object.presenter }}</span>
                                              </div>
                                              <div class="courses-price">
                                                   <a href="#"><span>USD 80</span></a>
@@ -401,111 +242,13 @@
                                    </div>
                               </div>
                          </div>
-
-                         <div class="col-md-4 col-sm-4">
-                              <div class="item">
-                                   <div class="courses-thumb">
-                                        <div class="courses-top">
-                                             <div class="courses-image">
-                                                  <img src="{% static 'images/courses-image3.jpg' %}"
-                                                       class="img-responsive" alt="">
-                                             </div>
-                                             <div class="courses-date">
-                                                  <span><i class="fa fa-calendar"></i> 15 / 8 / 2018</span>
-                                                  <span><i class="fa fa-clock-o"></i> 6 Hours</span>
-                                             </div>
-                                        </div>
-
-                                        <div class="courses-detail">
-                                             <h3><a href="#">Marketing Communication</a></h3>
-                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-
-                                        <div class="courses-info">
-                                             <div class="courses-author">
-                                                  <img src="{% static 'images/author-image3.jpg' %}"
-                                                       class="img-responsive" alt="">
-                                                  <span>Catherine</span>
-                                             </div>
-                                             <div class="courses-price free">
-                                                  <a href="#"><span>Free</span></a>
-                                             </div>
-                                        </div>
-                                   </div>
-                              </div>
-                         </div>
-
-                         <div class="col-md-4 col-sm-4">
-                              <div class="item">
-                                   <div class="courses-thumb">
-                                        <div class="courses-top">
-                                             <div class="courses-image">
-                                                  <img src="{% static 'images/courses-image4.jpg' %}"
-                                                       class="img-responsive" alt="">
-                                             </div>
-                                             <div class="courses-date">
-                                                  <span><i class="fa fa-calendar"></i> 10 / 8 / 2018</span>
-                                                  <span><i class="fa fa-clock-o"></i> 8 Hours</span>
-                                             </div>
-                                        </div>
-
-                                        <div class="courses-detail">
-                                             <h3><a href="#">Summer Kids</a></h3>
-                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-
-                                        <div class="courses-info">
-                                             <div class="courses-author">
-                                                  <img src="{% static 'images/author-image1.jpg' %}"
-                                                       class="img-responsive" alt="">
-                                                  <span>Mark Wilson</span>
-                                             </div>
-                                             <div class="courses-price">
-                                                  <a href="#"><span>USD 45</span></a>
-                                             </div>
-                                        </div>
-                                   </div>
-                              </div>
-                         </div>
-
-                         <div class="col-md-4 col-sm-4">
-                              <div class="item">
-                                   <div class="courses-thumb">
-                                        <div class="courses-top">
-                                             <div class="courses-image">
-                                                  <img src="{% static 'images/courses-image5.jpg' %}"
-                                                       class="img-responsive" alt="">
-                                             </div>
-                                             <div class="courses-date">
-                                                  <span><i class="fa fa-calendar"></i> 5 / 10 / 2018</span>
-                                                  <span><i class="fa fa-clock-o"></i> 10 Hours</span>
-                                             </div>
-                                        </div>
-
-                                        <div class="courses-detail">
-                                             <h3><a href="#">Business &amp; Management</a></h3>
-                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        </div>
-
-                                        <div class="courses-info">
-                                             <div class="courses-author">
-                                                  <img src="{% static 'images/author-image2.jpg' %}"
-                                                       class="img-responsive" alt="">
-                                                  <span>Jessica</span>
-                                             </div>
-                                             <div class="courses-price free">
-                                                  <a href="#"><span>Free</span></a>
-                                             </div>
-                                        </div>
-                                   </div>
-                              </div>
-                         </div>
-
+                         {% endfor %}
                     </div>
-
                </div>
           </div>
 </section>
+
+
 
 
 <!-- PREVIOUS EDITIONS -->
