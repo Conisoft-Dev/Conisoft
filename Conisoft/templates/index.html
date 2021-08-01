@@ -512,12 +512,12 @@
 <section id="testimonial">
      <div class="container">
           <div class="row">
-
                <div class="col-md-12 col-sm-12">
                     <div class="section-title">
                          <h2>Previous Editions <small>An Evolution & Histroy of Conisoft</small></h2>
                     </div>
-                         {% for object in model %}
+                    <div class="owl-carousel owl-theme owl-client">
+                         {% for object in editions %}
                          <div class="col-md-4 col-sm-4">
                               <div class="item">
                                    <div class="tst-author">
@@ -525,7 +525,7 @@
                                              <h4>{{ object.year }}</h4>
                                         </a>
                                         <div class="tst-image">
-                                             <img src="{% static '{{ object.image }}' %}" class="img-responsive"
+                                             <img src='{{ object.image.url }}' class="img-responsive"
                                                   alt="">
                                         </div>
                                    </div>

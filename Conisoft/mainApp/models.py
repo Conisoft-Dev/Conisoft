@@ -81,7 +81,7 @@ class Edition(models.Model):
     year = models.CharField(max_length=4)
     
     # path to image location in static resources folder
-    image = models.CharField(max_length=200)
+    image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
     link = models.URLField()
 
     def __str__(self):
