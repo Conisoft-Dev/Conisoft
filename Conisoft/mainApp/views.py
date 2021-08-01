@@ -1,6 +1,9 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
+from django.views import generic
+from .models import Edition
 
-class HomeView(TemplateView):
+class HomeView(generic.ListView):
+    model = Edition
     template_name = "index.html"
 
 

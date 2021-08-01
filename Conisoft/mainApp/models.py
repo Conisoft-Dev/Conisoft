@@ -79,7 +79,9 @@ class Course(models.Model):
 
 class Edition(models.Model):
     year = models.CharField(max_length=4)
-    image = models.URLField()
+    
+    # path to image location in static resources folder
+    image = models.CharField(max_length=200)
     link = models.URLField()
 
     def __str__(self):
@@ -182,5 +184,3 @@ class User(AbstractBaseUser):
         return self.admin
     
     objects = UserManager()
-
-
