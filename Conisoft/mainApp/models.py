@@ -43,7 +43,11 @@ class Carosel(models.Model):
 # Topics below Carosel
 class Topic(models.Model):
     name = models.CharField(max_length=200)
-    about = models.CharField(max_length=500)
+    about1 = models.CharField(max_length=500, null=True)
+    about2 = models.CharField(max_length=500, null=True)
+    about3 = models.CharField(max_length=500, null=True)
+    about4 = models.CharField(max_length=500, null=True)
+    about5 = models.CharField(max_length=500, null=True)
 
     def __str__(self):
         return self.name
@@ -51,15 +55,12 @@ class Topic(models.Model):
 # Call For Papers
 class PaperRequirement(models.Model):
     heading = models.CharField(max_length=200)
+    text1 = models.CharField(max_length=200, null=True)
+    text2 = models.CharField(max_length=200, null=True)
+    text3 = models.CharField(max_length=200, null=True)
+    text4 = models.CharField(max_length=200, null=True)
+    text5 = models.CharField(max_length=200, null=True)
 
-    def __str__(self):
-        return self.heading
-
-class Bullet(models.Model):
-    heading = models.CharField(max_length=200)
-    text = models.CharField(max_length=200)
-    Paper_requirement = models.ForeignKey(PaperRequirement, on_delete=models.CASCADE)
-    
     def __str__(self):
         return self.heading
 
