@@ -64,12 +64,22 @@ https://templatemo.com/tm-516-known
                          <li><a href="#courses" class="smoothScroll">Courses</a></li>
                          <li><a href="#testimonial" class="smoothScroll">Reviews</a></li>
                          <li><a href="#contact" class="smoothScroll">Contact</a></li>
-                         <li><a href="/register" >Register</a></li>
+                         <li><a href="/register" class= '{% if request.path == "register" %} active {% endif %}' >Register</a></li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
                          <li><a href="#"><i class="fa fa-phone"></i> +52 (664) 9797500</a></li>
                     </ul>
+                    {% if not user.is_authenticated %}
+                    <ul class="nav navbar-nav navbar-right">
+                         <li><a href="/login">login</a></li>
+                    </ul>
+                    {% else %}
+                    <ul class="nav navbar-nav navbar-right">
+                         <li><a href="/logout">logout</a></li>
+                    </ul>
+                    {% endif %}
+
                </div>
 
           </div>
