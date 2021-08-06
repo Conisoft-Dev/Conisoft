@@ -7,7 +7,7 @@ from .models import (
     PaperRequirement,
     Topic,
     Carosel,
-    Attendee
+    # Attendee
     )
 
 # Register your models here.
@@ -18,5 +18,5 @@ admin.site.register(Course)
 admin.site.register(PaperRequirement)
 admin.site.register(Topic)
 admin.site.register(Carosel)
-admin.site.register(Attendee)
+# admin.site.register(Attendee)
 

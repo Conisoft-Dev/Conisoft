@@ -2,10 +2,11 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
      <title>Conisoft 2021</title>
-<!-- 
+     <!-- 
 
 Known Template 
 
@@ -28,6 +29,7 @@ https://templatemo.com/tm-516-known
      <link rel="stylesheet" href="{% static 'css/templatemo-style.css' %}">
 
 </head>
+
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 
      <!-- PRE LOADER -->
@@ -35,7 +37,7 @@ https://templatemo.com/tm-516-known
           <div class="spinner">
 
                <span class="spinner-rotate"></span>
-               
+
           </div>
      </section>
 
@@ -57,14 +59,14 @@ https://templatemo.com/tm-516-known
 
                <!-- MENU LINKS -->
                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-nav-first">
+                    <ul class="nav navbar-nav">
                          <li><a href="#top" class="smoothScroll">Home</a></li>
                          <li><a href="#about" class="smoothScroll">About</a></li>
                          <li><a href="#team" class="smoothScroll">Teachers</a></li>
                          <li><a href="#courses" class="smoothScroll">Courses</a></li>
                          <li><a href="#testimonial" class="smoothScroll">Reviews</a></li>
                          <li><a href="#contact" class="smoothScroll">Contact</a></li>
-                         <li><a href="/register" class= '{% if request.path == "register" %} active {% endif %}' >Register</a></li>
+                         {% if not user.is_authenticated %} <li><a href="/register">Register</a></li>{% endif %}
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
@@ -86,10 +88,10 @@ https://templatemo.com/tm-516-known
      </section>
 
      <!-- MAIN -->
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>     
+     <main>
+          {% block content %}
+          {% endblock %}
+     </main>
 
 
      <!-- FOOTER -->
@@ -103,7 +105,8 @@ https://templatemo.com/tm-516-known
                                    <h2>Headquarters</h2>
                               </div>
                               <address>
-                                   <p>Universidad Autónoma de Baja California,<br> Facultad de Ciencias Químicas e Ingeniería </p>
+                                   <p>Universidad Autónoma de Baja California,<br> Facultad de Ciencias Químicas e
+                                        Ingeniería </p>
                               </address>
 
                               <ul class="social-icon">
@@ -112,9 +115,9 @@ https://templatemo.com/tm-516-known
                                    <li><a href="#" class="fa fa-instagram"></a></li>
                               </ul>
 
-                              <div class="copyright-text"> 
+                              <div class="copyright-text">
                                    <p>Copyright &copy; 2021 Conisoft</p>
-                                   
+
                                    <p>Design: SDGKU Dev Team</p>
                               </div>
                          </div>
@@ -150,15 +153,17 @@ https://templatemo.com/tm-516-known
                               <div>
                                    <div class="form-group">
                                         <form action="#" method="get">
-                                             <input type="email" class="form-control" placeholder="Enter your email" name="email" id="email" required="">
-                                             <input type="submit" class="form-control" name="submit" id="form-submit" value="Signup">
+                                             <input type="email" class="form-control" placeholder="Enter your email"
+                                                  name="email" id="email" required="">
+                                             <input type="submit" class="form-control" name="submit" id="form-submit"
+                                                  value="Signup">
                                         </form>
                                         <span><sup>*</sup> Please note - we do not spam your email.</span>
                                    </div>
                               </div>
                          </div>
                     </div>
-                    
+
                </div>
           </div>
      </footer>
@@ -172,5 +177,5 @@ https://templatemo.com/tm-516-known
      <script src="{% static 'js/custom.js' %}"></script>
 
 </body>
-</html>
 
+</html>

@@ -92,7 +92,7 @@ DATABASES = {
     This Completely changes the user authentication and the superusers as well,
     if you uncomment this you will have to create a new superuser.
  """
-# AUTH_USER_MODEL = 'mainApp.User'
+AUTH_USER_MODEL = 'mainApp.User'
 
 AUTH_PASSWORD_VALIDATORS = [
     {

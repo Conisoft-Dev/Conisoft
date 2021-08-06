@@ -1,18 +1,60 @@
-{% extends "base.html" %}
+{% extends "index.html" %}
 
-{% block content %} 
-
+{% block form %} 
 {% load crispy_forms_tags %}         
 
 <!--Register--> 
-<div class="container py-5">
-	<h1>Register</h1>
-	<form method="POST">
-		{% csrf_token %}
-		{{ register_form|crispy }}                    
-		<button class="btn btn-primary" type="submit">Register</button>
-	</form>
-	<p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
-</div>
+<section id="contact">
+	<div class="container">
+		 <div class="row">
+
+			  <div class="col-md-6 col-sm-12">
+				   {% load crispy_forms_tags %}
+
+				   <!--Register-->
+				   <div class="container py-5">
+						<h1>Register</h1>
+						<form method="POST">
+							 {% csrf_token %}
+							 {{ register_form|crispy }}
+							 <button class="btn btn-primary" type="submit">Register</button>
+						</form>
+						<p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
+				   </div>
+			  </div>
+
+		 </div>
+	</div>
+</section>
+
+
+{% endblock %}
+
+{% block content %}
+{% load crispy_forms_tags %}         
+
+<!--Register--> 
+<section id="contact">
+	<div class="container">
+		 <div class="row">
+
+			  <div class="col-md-6 col-sm-12">
+				   {% load crispy_forms_tags %}
+
+				   <!--Register-->
+				   <div class="container py-5">
+						<h1>Register</h1>
+						<form method="POST">
+							 {% csrf_token %}
+							 {{ register_form|crispy }}
+							 <button class="btn btn-primary" type="submit">Register</button>
+						</form>
+						<p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
+				   </div>
+			  </div>
+
+		 </div>
+	</div>
+</section>
 
 {% endblock %}

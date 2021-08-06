@@ -4,16 +4,16 @@ from django.contrib.auth.models import (
 )
 
 # user with foriegn key
-class Attendee(models.Model):
-    Full_Name = models.CharField(max_length=200)
-    industry_type = models.CharField(max_length=200)
-    presenter = models.BooleanField(default=False)
-    reciept = models.FileField()
-    guest = models.IntegerField(default=0)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE) # Foriegn Key to default user class
+# class Attendee(models.Model):
+#     Full_Name = models.CharField(max_length=200)
+#     industry_type = models.CharField(max_length=200)
+#     presenter = models.BooleanField(default=False)
+#     reciept = models.FileField()
+#     guest = models.IntegerField(default=0)
+#     user_id = models.ForeignKey(User, on_delete=models.CASCADE) # Foriegn Key to default user class
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
 
 
 # Main Workshop Model
@@ -149,7 +149,8 @@ class User(AbstractBaseUser):
     Full_Name = models.CharField(max_length=200)
     industry_type = models.CharField(max_length=200)
     presenter = models.BooleanField(default=False)
-    reciept = models.FileField()
+    reciept = models.ImageField()
+    paper = models.FileField(null=True)
     guest = models.IntegerField(default=0)
 
 
