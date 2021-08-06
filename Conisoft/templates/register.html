@@ -14,8 +14,8 @@
             {% csrf_token %}
             <!-- {{ form|crispy }} -->
             {{ form.username|as_crispy_field }}<br>
-            {{ form.password1|as_crispy_field }}<br>
-            {{ form.password2|as_crispy_field }}<br>
+            <!-- {{ form.password1|as_crispy_field }}<br>
+            {{ form.password2|as_crispy_field }}<br> -->
             <button type="submit" class="btn-block btn-light btn-lg text-dark">Complete</button>
           </form>
         </div>
