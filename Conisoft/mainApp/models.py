@@ -151,7 +151,7 @@ class User(AbstractBaseUser):
     presenter = models.BooleanField(default=False)
     reciept = models.ImageField()
     paper = models.FileField(null=True)
-    guest = models.IntegerField(default=0)
+    guest = models.IntegerField(default=1)
 
 
     # notice the absence of a "Password field", that is built in.
