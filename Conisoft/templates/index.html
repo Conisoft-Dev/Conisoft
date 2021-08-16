@@ -42,19 +42,6 @@
                     </div>
                </div>
                {% endfor %}
-
-               <!-- <div class="col-md-4 col-sm-4">
-                    <div class="feature-thumb">
-                         <span>01</span>
-                         <h3>Core Themes</h3>
-                         <p>Requirement engineering</p>
-                         <p>Systems modeling: language & formalization</p>
-                         <p>Architecture and software design</p>
-                         <p>Models and quality systems</p>
-                         <p>Process models</p>
-                         <p>Software metrics</p>
-                    </div>
-               </div> -->
           </div>
 </section>
 
@@ -88,113 +75,9 @@
                          {% endfor %}
                     </div>
                </div>
-
-
-               <!-- REGISTER -->
-               <div class="col-md-offset-1 col-md-4 col-sm-12">
-                    <div class="entry-form">
-                         <form action="#" method="post">
-                              <h2>Register</h2>
-                              <input type="text" name="full name" class="form-control" placeholder="Full name"
-                                   required="">
-
-                              <input type="email" name="email" class="form-control" placeholder="Your email address"
-                                   required="">
-
-                              <input type="password" name="password" class="form-control" placeholder="Your password"
-                                   required="">
-
-                              <button class="submit-btn form-control" id="form-submit">Get started</button>
-                         </form>
-                    </div>
-               </div>
-
           </div>
      </div>
 </section>
-
-<!-- PLEASE DO NOT DELETE TEAM SECTION YET-->
-<!-- TEAM
-<section id="team">
-     <div class="container">
-          <div class="row">
-
-               <div class="col-md-12 col-sm-12">
-                    <div class="section-title">
-                         <h2>Teachers <small>Meet Professional Trainers</small></h2>
-                    </div>
-               </div>
-
-               <div class="col-md-3 col-sm-6">
-                    <div class="team-thumb">
-                         <div class="team-image">
-                              <img src="{% static 'images/author-image1.jpg' %}" class="img-responsive" alt="">
-                         </div>
-                         <div class="team-info">
-                              <h3>Mark Wilson</h3>
-                              <span>I love Teaching</span>
-                         </div>
-                         <ul class="social-icon">
-                              <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
-                              <li><a href="#" class="fa fa-twitter"></a></li>
-                              <li><a href="#" class="fa fa-instagram"></a></li>
-                         </ul>
-                    </div>
-               </div>
-
-               <div class="col-md-3 col-sm-6">
-                    <div class="team-thumb">
-                         <div class="team-image">
-                              <img src="{% static 'images/author-image2.jpg' %}" class="img-responsive" alt="">
-                         </div>
-                         <div class="team-info">
-                              <h3>Catherine</h3>
-                              <span>Education is the key!</span>
-                         </div>
-                         <ul class="social-icon">
-                              <li><a href="#" class="fa fa-google"></a></li>
-                              <li><a href="#" class="fa fa-instagram"></a></li>
-                         </ul>
-                    </div>
-               </div>
-
-               <div class="col-md-3 col-sm-6">
-                    <div class="team-thumb">
-                         <div class="team-image">
-                              <img src="{% static 'images/author-image3.jpg' %}" class="img-responsive" alt="">
-                         </div>
-                         <div class="team-info">
-                              <h3>Jessie Ca</h3>
-                              <span>I like Online Courses</span>
-                         </div>
-                         <ul class="social-icon">
-                              <li><a href="#" class="fa fa-twitter"></a></li>
-                              <li><a href="#" class="fa fa-envelope-o"></a></li>
-                              <li><a href="#" class="fa fa-linkedin"></a></li>
-                         </ul>
-                    </div>
-               </div>
-
-               <div class="col-md-3 col-sm-6">
-                    <div class="team-thumb">
-                         <div class="team-image">
-                              <img src="{% static 'images/author-image4.jpg' %}" class="img-responsive" alt="">
-                         </div>
-                         <div class="team-info">
-                              <h3>Andrew Berti</h3>
-                              <span>Learning is fun</span>
-                         </div>
-                         <ul class="social-icon">
-                              <li><a href="#" class="fa fa-twitter"></a></li>
-                              <li><a href="#" class="fa fa-google"></a></li>
-                              <li><a href="#" class="fa fa-behance"></a></li>
-                         </ul>
-                    </div>
-               </div>
-
-          </div>
-     </div>
-</section> -->
 
 
 <!-- Courses -->
@@ -274,17 +157,8 @@
                          </div>
                          {% endfor %}
                     </div>
-
                </div>
           </div>
 </section>
-
-
-<!-- CONTACT -->
-{% if not user.is_authenticated %}
-     {% block form %}
-
-     {% endblock %}
-{% endif %}
 
 {% endblock content %}
