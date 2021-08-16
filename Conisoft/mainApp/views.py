@@ -24,7 +24,14 @@ class HomeView(ListView):
 class RegisterView(TemplateView):
     template_name = 'register.html'
 
-
+class Workshops(ListView):
+    course_model = Course
+    template_name = "workshops.html"
+    def as_view():
+        def obj_function(request):
+            returned_objects_dictionary = {'courses':Course.objects.all()}
+            return render(request, 'workshops.html', returned_objects_dictionary)
+        return obj_function
 
 def register_request(request):
 	if request.method == "POST":

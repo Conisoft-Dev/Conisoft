@@ -28,66 +28,13 @@
      </div>
 </section>
 
-
-<!-- FEATURE -->
-<section id="feature">
-     <div class="container">
-          <div class="row">
-               {% for object in topics %}
-               <div class="col-md-4 col-sm-4">
-                    <div class="feature-thumb">
-                         <span>{{ object.id }}</span>
-                         <h3>{{ object.name }}</h3>
-                         <p>{{ object.about }}</p>
-                    </div>
-               </div>
-               {% endfor %}
-          </div>
-</section>
-
-
-<!-- ABOUT -->
-<section id="about">
-     <div class="container">
-          <div class="row">
-
-               <div class="col-md-6 col-sm-12">
-                    <div class="about-info">
-                         <h2>Call for Papers</h2>
-                         {% for object in requirements %}
-                         <figure>
-                              <span><i class="fa fa-certificate"></i></span>
-                              <figcaption>
-                                   <h3>{{ object.heading }}</h3>
-                                   <ul>
-                                        <li><strong>Complete Document:</strong>
-                                             <p>Must be submitted as full papers.</p>
-                                        </li>
-                                        <li><strong>Length:</strong>
-                                             <p>From 6 pages to 10 pages.</p>
-                                        </li>
-                                        <li><strong>Language:</strong>
-                                             <p>In English or Spanish.</p>
-                                        </li>
-                                   </ul>
-                              </figcaption>
-                         </figure>
-                         {% endfor %}
-                    </div>
-               </div>
-          </div>
-     </div>
-</section>
-
-
 <!-- Courses -->
 <section id="courses">
      <div class="container">
           <div class="row">
-
                <div class="col-md-12 col-sm-12">
                     <div class="section-title">
-                         <h2>Popular Courses <small>Upgrade your skills with newest courses</small></h2>
+                         <h2>Workshops <small>Upgrade your skills with newest courses</small></h2>
                     </div>
 
                     <div class="owl-carousel owl-theme owl-courses">
@@ -131,6 +78,57 @@
 </section>
 
 
+<!-- FEATURE -->
+<!-- <section id="feature">
+     <div class="container">
+          <div class="row">
+               {% for object in topics %}
+               <div class="col-md-4 col-sm-4">
+                    <div class="feature-thumb">
+                         <span>{{ object.id }}</span>
+                         <h3>{{ object.name }}</h3>
+                         <p>{{ object.about }}</p>
+                    </div>
+               </div>
+               {% endfor %}
+          </div>
+</section> -->
+
+
+<!-- ABOUT -->
+<section id="about">
+     <div class="container">
+          <div class="row">
+               <div class="col-md-12 col-sm-12">
+                    <div class="section-title">
+                         <h2>Requirments <small>Papers must adhere to these guidelines</small></h2>
+                    </div>
+                    
+                    <div class="about-info">
+                         {% for object in requirements %}
+                         <figure>
+                              <span><i class="fa fa-certificate"></i></span>
+                              <figcaption>
+                                   <h3>{{ object.heading }}</h3>
+                                   <ul>
+                                        <li><strong>Complete Document:</strong>
+                                             <p>Must be submitted as full papers.</p>
+                                        </li>
+                                        <li><strong>Length:</strong>
+                                             <p>From 6 pages to 10 pages.</p>
+                                        </li>
+                                        <li><strong>Language:</strong>
+                                             <p>In English or Spanish.</p>
+                                        </li>
+                                   </ul>
+                              </figcaption>
+                         </figure>
+                         {% endfor %}
+                    </div>
+               </div>
+          </div>
+     </div>
+</section>
 
 
 <!-- PREVIOUS EDITIONS -->

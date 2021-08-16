@@ -12,25 +12,19 @@
      <meta name="keywords" content="">
      <meta name="author" content="">
      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
      <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
      <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
      <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
      <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
-
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="{% static 'css/templatemo-style.css' %}">
-
 </head>
 
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
-
      <!-- PRE LOADER -->
      <section class="preloader">
           <div class="spinner">
-
                <span class="spinner-rotate"></span>
-
           </div>
      </section>
 
@@ -38,14 +32,12 @@
      <!-- MENU -->
      <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
           <div class="container">
-
                <div class="navbar-header">
                     <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                          <span class="icon icon-bar"></span>
                          <span class="icon icon-bar"></span>
                          <span class="icon icon-bar"></span>
                     </button>
-
                     <!-- lOGO TEXT HERE -->
                     <a href="{% url 'home' %}" class="navbar-brand">Conisoft</a>
                </div>
@@ -53,22 +45,30 @@
                <!-- MENU LINKS -->
                <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                         {% if 'register' in request.path or 'login' in request.path %}
+                         {% if 'register' in request.path or 'login' in request.path or 'workshops' in request.path %}
                               <li class="active"><a href="/#home" class="smoothScroll">Home</a></li>
-                              <li><a href="/#about" class="smoothScroll">Courses</a></li>
-                              <li><a href="/#courses" class="smoothScroll">About</a></li>
-                              <li><a href="/#testimonial" class="smoothScroll">Previous Editions</a></li>
+                              <li><a href="/workshops" class="smoothScroll">Workshops</a></li>
+                              <li><a href="/#about" class="smoothScroll">Requirments</a></li>
+                              <li><a href="/#testimonial" class="smoothScroll">Past Editions</a></li>
                               <li><a href="/#footer" class="smoothScroll">Contact</a></li>
                          {% else %}
                               <li class="active"><a href="#home" class="smoothScroll">Home</a></li>
-                              <li><a href="#about" class="smoothScroll">Courses</a></li>
-                              <li><a href="#courses" class="smoothScroll">About</a></li>
-                              <li><a href="#testimonial" class="smoothScroll">Previous Editions</a></li>
+                              <li><a href="/workshops" class="smoothScroll">Workshops</a></li>
+                              <li><a href="#about" class="smoothScroll">Requirments</a></li>
+                              <li><a href="#testimonial" class="smoothScroll">Past Editions</a></li>
                               <li><a href="#footer" class="smoothScroll">Contact</a></li>
                          {% endif %}
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
+                         {% if user.is_admin %}
+                         <li><a href="/admin">Admin</a></li>
+                         {% endif %}
+
+                         {% if user.is_staff %}
+                         <li><a href="#">Manage</a></li>
+                         {% endif %}
+
                          {% if not user.is_authenticated %}
                          <li><a href="/login">Login</a></li>
                          <li class="{% if request.path == '/register' %} active {% endif %}"><a href="/register">Register</a></li>
