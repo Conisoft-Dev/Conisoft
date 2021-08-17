@@ -36,6 +36,7 @@ class Workshops(ListView):
 def register_request(request):
 	if request.method == "POST":
 		form = NewUserForm(request.POST, request.FILES)
+		print(form)
 		if form.is_valid():
 			user = form.save()
 			login(request, user)

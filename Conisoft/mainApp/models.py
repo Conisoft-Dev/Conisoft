@@ -149,7 +149,7 @@ class User(AbstractBaseUser):
     industry_type = models.CharField(max_length=200)
     presenter = models.BooleanField(default=False)
     receipt = models.ImageField('photo', upload_to='receipts', null=True, blank=True)
-    paper = models.FileField(null=True)
+    paper = models.FileField('paper', upload_to='papers', null=True, blank=True)
     guest = models.IntegerField(default=1)
 
 
