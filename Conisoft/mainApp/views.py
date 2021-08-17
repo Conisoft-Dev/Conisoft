@@ -34,14 +34,20 @@ class Workshops(ListView):
         return obj_function
 
 def register_request(request):
+	print("register request received")
 	if request.method == "POST":
+		print("POST request received")
 		form = NewUserForm(request.POST)
+		print(form)
 		if form.is_valid():
+			print("valid form found")
 			user = form.save()
 			login(request, user)
 			messages.success(request, "Registration successful." )
+			print("redirecting")
 			return redirect("home")
-		messages.error(request, "Unsuccessful registration. Invalid information.")
+		else:
+			messages.error(request, "Unsuccessful registration. Invalid information.")
 	form = NewUserForm()
 	return render (request=request, template_name="register.html", context={"register_form":form})
 

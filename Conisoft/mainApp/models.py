@@ -8,7 +8,7 @@ from django.contrib.auth.models import (
 #     Full_Name = models.CharField(max_length=200)
 #     industry_type = models.CharField(max_length=200)
 #     presenter = models.BooleanField(default=False)
-#     reciept = models.FileField()
+#     receipt = models.FileField()
 #     guest = models.IntegerField(default=0)
 #     user_id = models.ForeignKey(User, on_delete=models.CASCADE) # Foriegn Key to default user class
 
@@ -136,7 +136,6 @@ class UserManager(BaseUserManager):
 
 
 
-
 class User(AbstractBaseUser):
     email = models.EmailField(
         verbose_name='email address',
@@ -149,7 +148,7 @@ class User(AbstractBaseUser):
     Full_Name = models.CharField(max_length=200)
     industry_type = models.CharField(max_length=200)
     presenter = models.BooleanField(default=False)
-    reciept = models.ImageField()
+    receipt = models.ImageField(null=True)
     paper = models.FileField(null=True)
     guest = models.IntegerField(default=1)
 
