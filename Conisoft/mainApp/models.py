@@ -148,7 +148,7 @@ class User(AbstractBaseUser):
     Full_Name = models.CharField(max_length=200)
     industry_type = models.CharField(max_length=200)
     presenter = models.BooleanField(default=False)
-    receipt = models.ImageField(null=True)
+    receipt = models.ImageField('photo', upload_to='receipts', null=True, blank=True)
     paper = models.FileField(null=True)
     guest = models.IntegerField(default=1)
 
