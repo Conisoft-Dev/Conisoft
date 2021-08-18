@@ -152,6 +152,7 @@ class User(AbstractBaseUser):
     receipt = models.ImageField('photo', upload_to='receipts', null=True, blank=True)
     paper = models.FileField('paper', upload_to='papers', null=True, blank=True)
     guest = models.IntegerField(default=1)
+    workshops_subscribed = models.IntegerField(default=0)
 
 
     # notice the absence of a "Password field", that is built in.

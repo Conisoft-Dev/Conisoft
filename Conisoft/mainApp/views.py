@@ -1,10 +1,11 @@
 from django.views.generic import TemplateView, ListView
-from .models import Edition, Topic, PaperRequirement, Course, Carosel, Workshop
+from .models import Edition, Topic, PaperRequirement, Course, Carosel, Workshop, User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import  render, redirect
 from .forms import NewUserForm
 from django.contrib import messages
+from django.http import HttpResponse
 
 
 class HomeView(ListView):
@@ -74,10 +75,19 @@ def logout_request(request):
 
 def ajax_subscribe_workshop(request):
 	if request.method == 'GET':
-		workshop_id = request.GET['workshop_id']
-		subscribed_workshop = Workshop.objects.get(id = workshop_id)
-		subscribed_workshop.taken_slots += 1
-		subscribed_workshop.save()
-		return HttpResponse("Success!") # Sending an success response
+		if request.user:
+			user = User.objects.get(email=request.user)
+			print(user.workshops_subscribed)
+			if user.workshops_subscribed < 2:
+				user.workshops_subscribed += 1
+				workshop_id = request.GET['workshop_id']
+				subscribed_workshop = Workshop.objects.get(id = workshop_id)
+				subscribed_workshop.taken_slots += 1
+				subscribed_workshop.save()
+				user.save()
+				return HttpResponse("Success!") # Sending an success response
+			else:
+				messages.error(request, 'You have already Subscribed to 2 workshops')
+				return HttpResponse('You have already Subscribed to 2 workshops')
 	else:
 		return HttpResponse("Request method is not a GET")
