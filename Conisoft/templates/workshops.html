@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% csrf_token %}
 
 <!-- Courses -->
 <section id="courses">
@@ -9,7 +10,7 @@
 
             <div class="col-md-12 col-sm-12">
                 <div class="section-title">
-                        <h2>Workshops <small>Upgrade your skills with newest courses</small></h2>
+                    <h2>Workshops <small>Upgrade your skills with newest courses</small></h2>
                 </div>
 
                 {% for object in courses %}
@@ -33,12 +34,12 @@
 
                             <div class="courses-info">
                                 <div class="courses-author">
-                                    <img src='{{ object.presenter_image.url }}' class="img-responsive"
-                                        alt="">
+                                    <img src='{{ object.presenter_image.url }}' class="img-responsive" alt="">
                                     <span>{{ object.presenter }}</span>
                                 </div>
                                 <div class="courses-price">
-                                    <a href="#"><span>USD 80</span></a>
+                                    <span class="subscribe_button" style="cursor:pointer;"
+                                        data-catid="{{ object.id }}">Atttend</span>
                                 </div>
                             </div>
                         </div>
@@ -51,3 +52,27 @@
 </section>
 
 {% endblock content %}
+
+{% block scripts %}
+<script>
+
+    $('.subscribe_button').click(function () {
+        console.log('activated')
+        var id
+        id = $(this).attr('data-catid');
+        console.log(id)
+        $.ajax(
+            {
+                type: 'GET',
+                url: '/workshops/subscribe',
+                data: {
+                    workshop_id: id
+                },
+                success: function (data) {
+                    console.log('Workshop' + id + 'Was subscribed to')
+                }
+            }
+        )
+    })
+</script>
+{% endblock scripts %}

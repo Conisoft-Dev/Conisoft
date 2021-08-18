@@ -3,7 +3,8 @@ from . import views
 from .views import (
 	HomeView,
 	RegisterView,
-	Workshops
+	Workshops,
+	ajax_subscribe_workshop
 )
 
 urlpatterns = [
@@ -12,5 +13,6 @@ urlpatterns = [
 	path("register", views.register_request, name="register"),
 	path("login", views.login_request, name="login"),
 	path('logout', views.logout_request, name="logout"),
+	path('workshops/subscribe', views.ajax_subscribe_workshop, name='subscribe_workshop')
 ]
 

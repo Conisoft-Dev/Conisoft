@@ -17,7 +17,7 @@ from django.contrib.auth.models import (
 
 
 # Main Workshop Model
-class Worshop(models.Model):
+class Workshop(models.Model):
     name = models.CharField(max_length=200)
     presenter = models.CharField(max_length=200)
     description = models.CharField(max_length=500)

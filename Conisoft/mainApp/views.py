@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView, ListView
-from .models import Edition, Topic, PaperRequirement, Course, Carosel
+from .models import Edition, Topic, PaperRequirement, Course, Carosel, Workshop
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import  render, redirect
@@ -25,11 +25,11 @@ class RegisterView(TemplateView):
     template_name = 'register.html'
 
 class Workshops(ListView):
-    course_model = Course
+    course_model = Workshop
     template_name = "workshops.html"
     def as_view():
         def obj_function(request):
-            returned_objects_dictionary = {'courses':Course.objects.all()}
+            returned_objects_dictionary = {'courses':Workshop.objects.all()}
             return render(request, 'workshops.html', returned_objects_dictionary)
         return obj_function
 
@@ -71,3 +71,13 @@ def logout_request(request):
 	logout(request)
 	messages.info(request, "You have successfully logged out.") 
 	return redirect("home")
+
+def ajax_subscribe_workshop(request):
+	if request.method == 'GET':
+		workshop_id = request.GET['workshop_id']
+		subscribed_workshop = Workshop.objects.get(id = workshop_id)
+		subscribed_workshop.taken_slots += 1
+		subscribed_workshop.save()
+		return HttpResponse("Success!") # Sending an success response
+	else:
+		return HttpResponse("Request method is not a GET")
