@@ -145,6 +145,7 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) # a admin user; non super-user
     admin = models.BooleanField(default=False) # a superuser
+    is_approved = models.BooleanField(default=False) # reciept approval
     Full_Name = models.CharField(max_length=200)
     industry_type = models.CharField(max_length=200)
     presenter = models.BooleanField(default=False)
