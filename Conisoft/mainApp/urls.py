@@ -4,7 +4,8 @@ from .views import (
 	HomeView,
 	RegisterView,
 	Workshops,
-	ajax_subscribe_workshop
+	ajax_subscribe_workshop,
+	ManageView
 )
 
 urlpatterns = [
@@ -13,6 +14,7 @@ urlpatterns = [
 	path("register", views.register_request, name="register"),
 	path("login", views.login_request, name="login"),
 	path('logout', views.logout_request, name="logout"),
-	path('workshops/subscribe', views.ajax_subscribe_workshop, name='subscribe_workshop')
+	path('workshops/subscribe', views.ajax_subscribe_workshop, name='subscribe_workshop'),
+	path('manage', ManageView.as_view(), name='manage'),
 ]
 

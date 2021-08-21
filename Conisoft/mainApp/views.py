@@ -34,6 +34,15 @@ class Workshops(ListView):
             return render(request, 'workshops.html', returned_objects_dictionary)
         return obj_function
 
+class ManageView(ListView):
+	model = User
+	template_name = 'manage.html'
+	def as_view():
+		def obj_function(request):
+			users = {'users' : User.objects.all()}
+			return render(request, 'manage.html', users)
+		return obj_function
+
 def register_request(request):
 	if request.method == "POST":
 		form = NewUserForm(request.POST, request.FILES)
