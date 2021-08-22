@@ -16,3 +16,43 @@
 
 
 {% endblock %}
+
+{% block scripts %}
+<script>
+	// Hide presenter info
+	$('#div_id_paper').hide()
+	$('#div_id_industry_type').hide()
+	// Hide Receipt info
+	$('#div_id_receipt').hide()
+	$('#div_id_guest').hide()
+	// Global Vars
+	var presenter_state = false;
+	var have_receipt_state = false;
+
+	// Show and hide presenter only info
+	$('#div_id_presenter').change(function () {
+		if (presenter_state == false) {
+			$('#div_id_paper').show()
+			$('#div_id_industry_type').show()
+			presenter_state = true;
+		} else {
+			$('#div_id_paper').hide()
+			$('#div_id_industry_type').hide()
+			presenter_state = false;
+		}
+	})
+
+	// Show and hide receipt info 
+	$('#div_id_have_receipt').change(function () {
+		if (have_receipt_state == false) {
+			$('#div_id_receipt').show()
+			$('#div_id_guest').show()
+			have_receipt_state = true
+		} else {
+			$('#div_id_receipt').hide()
+			$('#div_id_guest').hide()
+			have_receipt_state = false
+		}
+	})
+</script>
+{% endblock scripts %}

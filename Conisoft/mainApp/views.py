@@ -3,7 +3,7 @@ from .models import Edition, Topic, PaperRequirement, Course, Carosel, Workshop,
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import  render, redirect
-from .forms import NewUserForm
+from .forms import NewUserForm, ReceiptForm
 from django.contrib import messages
 from django.http import HttpResponse
 
@@ -46,7 +46,6 @@ class ManageView(ListView):
 def register_request(request):
 	if request.method == "POST":
 		form = NewUserForm(request.POST, request.FILES)
-		print(form)
 		if form.is_valid():
 			user = form.save()
 			login(request, user)
@@ -57,6 +56,17 @@ def register_request(request):
 	form = NewUserForm()
 	return render (request=request, template_name="register.html", context={"register_form":form})
 
+def receipt_upload(request):
+	if request.method == "POST":
+		form = ReceiptForm(request.POST, request.FILES)
+		if form.is_valid():
+			user = User.objects.get(email = request.user)
+			user.guest = form.cleaned_data['guest']
+			user.receipt = form.cleaned_data['receipt']
+			user.save()
+		return redirect('home')
+	form = ReceiptForm()
+	return render(request = request, template_name='receipt.html', context={'receipt_form': form})
 
 def login_request(request):
 	if request.method == "POST":
