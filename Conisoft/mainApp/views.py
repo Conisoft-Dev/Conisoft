@@ -30,7 +30,7 @@ class Workshops(ListView):
     template_name = "workshops.html"
     def as_view():
         def obj_function(request):
-            returned_objects_dictionary = {'courses':Workshop.objects.all()}
+            returned_objects_dictionary = {'courses':Course.objects.all()}
             return render(request, 'workshops.html', returned_objects_dictionary)
         return obj_function
 

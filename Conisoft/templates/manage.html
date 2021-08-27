@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
 {% csrf_token %}
 <section id="courses">
@@ -25,46 +26,40 @@
             </div>
         </div> 
     </div>
-</section>
-
-<section id="courses">
     <div class="container">
         <div class="row">
-            <div class="section-title">
-                <h2>Click a User to edit, or to view a receipt</h2>
-            </div>
-            
             <div class="col-md-12 col-sm-12">
-                <div class="col-md-4 col-sm-4">
                 {% for user in search_results %}
+                <div class="col-md-3 col-sm-3">
                     <div class="item">
-                        <div style="display: flex; flex-direction: column; width: 40%; text-align: center;">
-                            <a href="/admin/mainApp/user/{{user.id}}/change/"><h3>{{ user.Full_Name }}</h3></a>
-                            <a href="/admin/mainApp/user/{{user.id}}/change/"><p>{{ user.email }}</p></a>
-
-                            {% if user.receipt %}
-                                <button style="border-radius: 0%;" class="btn btn-danger"><a href='media/{{ user.receipt }}' alt="Receipt Missing">View Receipt</a></button>
-                            {% else %}
-                                <button style="border-radius: 0%;" class="btn btn-outline"><p>Receipt Missing</p></button>
-                            {% endif %}
-
-                            {% if user.is_approved == False %}
-                                <button style="border-top-left-radius: 0%; border-top-right-radius: 0%;" class="btn btn-outline btn-lg"><a href="/admin/mainApp/user/{{user.id}}/change/">Not Approved</a></button>
-                            {% else %}
-                                <button style="border-top-left-radius: 0%; border-top-right-radius: 0%;" class="btn btn-success btn-lg"><a href="/admin/mainApp/user/{{user.id}}/change/">Approved</a></button>
-                            {% endif %}  
+                        <div class="courses-thumb">
+                            <div class="card" style="width: 100%;">
+                                <div class="card-body">
+                                    <a href="/admin/mainApp/user/{{user.id}}/change/"><h3 class="card-title">{{ user.Full_Name }}</h3></a>
+                                    <a href="/admin/mainApp/user/{{user.id}}/change/"><p class="card-text">{{ user.email }}</p></a>
+                                    <a href="/admin/mainApp/user/{{user.id}}/change/"><p class="card-text">Workshops Subscribed: {{ user.workshops_subscribed }}</p></a>
+                                    {% if user.receipt %}
+                                        <a href='media/{{ user.receipt }}' class="btn btn-primary" style="width: 100%; margin-bottom: 5px;" alt="Missing">Receipt</a>
+                                    {% else %}
+                                        <a href='/admin/mainApp/user/{{user.id}}/change/' class="btn btn-outline-primary" style="width: 100%; margin-bottom: 5px;" alt="Missing">No Receipt</a>
+                                    {% endif %}
+                                        <br>
+                                    {% if user.is_approved == False %}
+                                        <a href="/admin/mainApp/user/{{user.id}}/change/" class="btn btn-primary" style="width: 100%;">Approved</a>
+                                    {% else %}
+                                        <a href="/admin/mainApp/user/{{user.id}}/change/" class="btn btn-outline-primary" style="width: 100%;">Not Approved</a>
+                                    {% endif %}
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </div>  
+                </div>
                 {% empty %}
                     <h1>No Results</h1>
-                {% endfor %}
-                </div>
-            </div> 
+                {% endfor %}  
+            </div>                
         </div>
     </div>
 </section>
-
-
-                    
 
 {% endblock %}

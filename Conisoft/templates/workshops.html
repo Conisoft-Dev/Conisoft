@@ -14,32 +14,35 @@
                 </div>
 
                 {% for object in courses %}
-                <div class="col-md-4 col-sm-4">
+                <div class="col-md-3 col-sm-3">
                     <div class="item">
                         <div class="courses-thumb">
-                            <div class="courses-top">
-                                <div class="courses-image">
-                                    <img src="{{ object.image.url }}" class="img-responsive" alt="">
-                                </div>
-                                <div class="courses-date">
-                                    <span><i class="fa fa-calendar"></i>{{ object.date }}</span>
-                                    <span><i class="fa fa-clock-o"></i> {{ object.time_length }} Hours</span>
-                                </div>
-                            </div>
+                            
 
-                            <div class="courses-detail">
-                                <h3><a href="#">{{ object.name }}</a></h3>
-                                <p>{{ object.description }}.</p>
-                            </div>
-
-                            <div class="courses-info">
+                            <!-- <div class="courses-info">
                                 <div class="courses-author">
                                     <img src='{{ object.presenter_image.url }}' class="img-responsive" alt="">
                                     <span>{{ object.presenter }}</span>
                                 </div>
+                            </div> -->
+
+                            <div class="courses-top">
+                                <div class="courses-image">
+                                    <img src="{{ object.image.url }}" class="img-responsive" alt="">
+                                </div>
                                 <div class="courses-price">
+                                    <h3><a href="#">{{ object.name }}</a></h3>
+                                    <p>{{ object.description }}.</p>
                                     <span class="subscribe_button" style="cursor:pointer;"
-                                        data-catid="{{ object.id }}">Atttend</span>
+                                        data-catid="{{ object.id }}">Attend</span>
+                                </div>
+                                <div class="courses-date">
+                                    <div class="courses-author">
+                                        <img src='{{ object.presenter_image.url }}' class="img-responsive" alt="">
+                                        <span>{{ object.presenter }}</span>
+                                    </div>
+                                    <span><i class="fa fa-calendar"></i>{{ object.date }}</span>
+                                    <span><i class="fa fa-clock-o"></i> {{ object.time_length }} Hours</span>
                                 </div>
                             </div>
                         </div>
