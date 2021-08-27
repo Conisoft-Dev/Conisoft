@@ -34,14 +34,14 @@ class Workshops(ListView):
             return render(request, 'workshops.html', returned_objects_dictionary)
         return obj_function
 
-class ManageView(ListView):
-	model = User
-	template_name = 'manage.html'
-	def as_view():
-		def obj_function(request):
-			users = {'users' : User.objects.all()}
-			return render(request, 'manage.html', users)
-		return obj_function
+# class ManageView(ListView):
+# 	model = User
+# 	template_name = 'manage.html'
+# 	def as_view():
+# 		def obj_function(request):
+# 			users = {'users' : User.objects.all()}
+# 			return render(request, 'manage.html', users)
+# 		return obj_function
 
 def register_request(request):
 	if request.method == "POST":
@@ -110,3 +110,23 @@ def ajax_subscribe_workshop(request):
 				return HttpResponse('You have already Subscribed to 2 workshops')
 	else:
 		return HttpResponse("Request method is not a GET")
+
+
+
+class SearchView(ListView):
+    model = User
+    template_name = 'manage.html'
+    context_object_name = 'search_results'
+    def get_queryset(self):
+       result = super(SearchView, self).get_queryset()
+       name_search = self.request.GET.get('name_search')
+       email_search = self.request.GET.get('email_search')
+       approval_search = self.request.GET.get('approval_type')
+       if email_search or approval_search or name_search:
+          postresult = User.objects.filter(Full_Name__contains=name_search, email__contains=email_search, is_approved__contains=approval_search)
+          result = postresult
+       else:
+           result = User.objects.all()
+       print(result)
+
+       return result

@@ -5,47 +5,66 @@
 <section id="courses">
     <div class="container">
         <div class="row">
+            <div class="section-title">
+                <h2>User Search</h2>
+                <form class="add_your_class" method="GET" action="" >
+                    <label for="name_search">Name</label>
+                    <input class="add_your_class" type="search" name="name_search"><br>
 
-            <div class="col-md-12 col-sm-12">
-                <div class="section-title">
-                    <h2>Unapproved Users</h2>
-                    <p>With receipts</p>
-                </div>
-                <!-- How to display reciept image -->
-                <!-- <img src='media/{{ user.receipt }}' alt=""> -->
-                
-                {% for user in users %}
-                    {% if user.is_approved == False and user.receipt %}
-                <div class="col-md-4 col-sm-4">
-                    <div class="item">
-                        <div style="display: flex; flex-direction: column; width: 40%; text-align: center;">
-                            <h3>{{ user.Full_Name }}</h3>
-                            <img src='media/{{ user.receipt }}' alt="User has not uploaded a receipt">
-                            <button style="border-top-left-radius: 0%; border-top-right-radius: 0%;" class="btn btn-primary btn-lg">Approve</button>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-                {% endfor %}
-                <div class="section-title">
-                    <h2>Unapproved Users</h2>
-                    <p>Without receipts</p>
-                </div>
-                {% for user in users %}
-                    {% if user.is_approved == False and user.receipt == '' %}
-                <div class="col-md-4 col-sm-4">
-                    <div class="item">
-                        <div style="display: flex; flex-direction: column; width: 40%; text-align: center;">
-                            <h3>{{ user.Full_Name }}</h3>
-                            <h4>User has not uploaded a Receipt</h4>
-                            <button style="border-top-left-radius: 0%; border-top-right-radius: 0%;" class="btn btn-primary btn-lg">Approve</button>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-                {% endfor %}
+                    <label for="email_search">Email</label>
+                    <input class="add_your_class" type="search" name="email_search"><br>
+
+                    <select class="form-select" aria-label="Default select example" name="approval_type">
+                        <option selected value="">All</option>
+                        <option value="1">Approved</option>
+                        <option value="0">Not Approved</option>
+                      </select>
+                      <br>
+                    <button class="add_your_class" type="submit"> Search </button>
+                </form>
             </div>
+        </div> 
+    </div>
+</section>
+
+<section id="courses">
+    <div class="container">
+        <div class="row">
+            <div class="section-title">
+                <h2>Click a User to edit, or to view a receipt</h2>
+            </div>
+            
+            <div class="col-md-12 col-sm-12">
+                <div class="col-md-4 col-sm-4">
+                {% for user in search_results %}
+                    <div class="item">
+                        <div style="display: flex; flex-direction: column; width: 40%; text-align: center;">
+                            <a href="/admin/mainApp/user/{{user.id}}/change/"><h3>{{ user.Full_Name }}</h3></a>
+                            <a href="/admin/mainApp/user/{{user.id}}/change/"><p>{{ user.email }}</p></a>
+
+                            {% if user.receipt %}
+                                <button style="border-radius: 0%;" class="btn btn-danger"><a href='media/{{ user.receipt }}' alt="Receipt Missing">View Receipt</a></button>
+                            {% else %}
+                                <button style="border-radius: 0%;" class="btn btn-outline"><p>Receipt Missing</p></button>
+                            {% endif %}
+
+                            {% if user.is_approved == False %}
+                                <button style="border-top-left-radius: 0%; border-top-right-radius: 0%;" class="btn btn-outline btn-lg"><a href="/admin/mainApp/user/{{user.id}}/change/">Not Approved</a></button>
+                            {% else %}
+                                <button style="border-top-left-radius: 0%; border-top-right-radius: 0%;" class="btn btn-success btn-lg"><a href="/admin/mainApp/user/{{user.id}}/change/">Approved</a></button>
+                            {% endif %}  
+                        </div>
+                    </div>
+                {% empty %}
+                    <h1>No Results</h1>
+                {% endfor %}
+                </div>
+            </div> 
         </div>
     </div>
 </section>
+
+
+                    
+
 {% endblock %}
