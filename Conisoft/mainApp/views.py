@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, UpdateView
 from .models import Edition, Topic, PaperRequirement, Course, Carosel, Workshop, User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
@@ -25,14 +25,17 @@ class HomeView(ListView):
 class RegisterView(TemplateView):
     template_name = 'register.html'
 
-class Workshops(ListView):
+class Workshops(UpdateView):
     course_model = Workshop
+    user_model = User
     template_name = "workshops.html"
     def as_view():
         def obj_function(request):
-            returned_objects_dictionary = {'courses':Course.objects.all()}
+            returned_objects_dictionary = {'courses':Course.objects.all(), 'user':User.objects.all()}
             return render(request, 'workshops.html', returned_objects_dictionary)
         return obj_function
+	
+	
 
 # class ManageView(ListView):
 # 	model = User
@@ -99,8 +102,18 @@ def ajax_subscribe_workshop(request):
 			print(user.workshops_subscribed)
 			if user.workshops_subscribed < 2:
 				user.workshops_subscribed += 1
+				
 				workshop_id = request.GET['workshop_id']
-				subscribed_workshop = Workshop.objects.get(id = workshop_id)
+				workshop_name = request.GET['workshop_name']
+				subscribed_workshop = Course.objects.get(id = workshop_id)
+
+				if user.course_1_id == 0:
+					user.course_1_id = workshop_id
+					user.course_1_name = workshop_name
+				elif user.course_2_id == 0:
+					user.course_2_id = workshop_id
+					user.course_2_name = workshop_name
+
 				subscribed_workshop.taken_slots += 1
 				subscribed_workshop.save()
 				user.save()

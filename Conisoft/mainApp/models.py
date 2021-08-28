@@ -73,6 +73,7 @@ class Course(models.Model):
     presenter = models.CharField(max_length=200)
     image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
     presenter_image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+    taken_slots = models.IntegerField(default=0)
 
 
     def __str__(self):
@@ -151,8 +152,12 @@ class User(AbstractBaseUser):
     presenter = models.BooleanField(default=False)
     receipt = models.ImageField('photo', upload_to='receipts', null=True, blank=True)
     paper = models.FileField('paper', upload_to='papers', null=True, blank=True)
-    guest = models.IntegerField(default=0, null=True)
+    guests = models.IntegerField(default=0, null=True)
     workshops_subscribed = models.IntegerField(default=0)
+    course_1_name = models.CharField(max_length=200, null=True, default='None')
+    course_1_id = models.IntegerField(default=0, null=True)
+    course_2_name = models.CharField(max_length=200, null=True, default='None')
+    course_2_id = models.IntegerField(default=0, null=True)
 
 
     # notice the absence of a "Password field", that is built in.
