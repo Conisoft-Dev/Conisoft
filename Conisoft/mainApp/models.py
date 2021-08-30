@@ -74,6 +74,7 @@ class Course(models.Model):
     image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
     presenter_image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
     taken_slots = models.IntegerField(default=0)
+    zoom_link = models.CharField(blank=True, max_length=500)
 
 
     def __str__(self):
@@ -156,8 +157,10 @@ class User(AbstractBaseUser):
     workshops_subscribed = models.IntegerField(default=0)
     course_1_name = models.CharField(max_length=200, null=True, default='None')
     course_1_id = models.IntegerField(default=0, null=True)
+    course_1_link = models.CharField(max_length=200, null=True, default='None')
     course_2_name = models.CharField(max_length=200, null=True, default='None')
     course_2_id = models.IntegerField(default=0, null=True)
+    course_2_link = models.CharField(max_length=200, null=True, default='None')
 
 
     # notice the absence of a "Password field", that is built in.

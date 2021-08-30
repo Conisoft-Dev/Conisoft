@@ -25,8 +25,8 @@ class HomeView(ListView):
 class RegisterView(TemplateView):
     template_name = 'register.html'
 
-class Workshops(UpdateView):
-    course_model = Workshop
+class Workshops(ListView):
+    course_model = Course
     user_model = User
     template_name = "workshops.html"
     def as_view():
@@ -105,14 +105,17 @@ def ajax_subscribe_workshop(request):
 				
 				workshop_id = request.GET['workshop_id']
 				workshop_name = request.GET['workshop_name']
+				workshop_link = request.GET['workshop_link']
 				subscribed_workshop = Course.objects.get(id = workshop_id)
 
 				if user.course_1_id == 0:
 					user.course_1_id = workshop_id
 					user.course_1_name = workshop_name
+					user.course_1_link = workshop_link
 				elif user.course_2_id == 0:
 					user.course_2_id = workshop_id
 					user.course_2_name = workshop_name
+					user.course_2_link = workshop_link
 
 				subscribed_workshop.taken_slots += 1
 				subscribed_workshop.save()

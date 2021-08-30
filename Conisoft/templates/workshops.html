@@ -34,7 +34,7 @@
                                     <h3><a href="#">{{ object.name }}</a></h3>
                                     <p>{{ object.description }}.</p>
                                     <span class="subscribe_button" style="cursor:pointer;"
-                                        data-catid="{{ object.id }}" data-catname="{{ object.name }}">Attend</span>
+                                        data-catid="{{ object.id }}" data-catname="{{ object.name }}" data-catzoom_link="{{ object.zoom_link }}">Attend</span>
                                 </div>
                                 <div class="courses-date">
                                     <div class="courses-author">
@@ -61,9 +61,10 @@
 
     $('.subscribe_button').click(function () {
         console.log('activated')
-        var id,name
+        var id,name,link
         id = $(this).attr('data-catid');
         name = $(this).attr('data-catname');
+        link = $(this).attr('data-catzoom_link');
         console.log(id)
         $.ajax(
             {
@@ -71,7 +72,8 @@
                 url: '/workshops/subscribe',
                 data: {
                     workshop_id: id,
-                    workshop_name: name
+                    workshop_name: name,
+                    workshop_link: link,
                 },
                 success: function (data) {
                     console.log('Workshop' + id + 'Was subscribed to')

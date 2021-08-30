@@ -37,7 +37,7 @@
                                 <div class="card-body">
                                     <a href="/admin/mainApp/user/{{user.id}}/change/"><h3 class="card-title">{{ user.Full_Name }}</h3></a>
                                     <a href="/admin/mainApp/user/{{user.id}}/change/"><p class="card-text">{{ user.email }}</p></a>
-                                    <a href="/admin/mainApp/user/{{user.id}}/change/"><p class="card-text">Workshops Subscribed: {{ user.workshops_subscribed }}</p></a>
+                                    <a href="/admin/mainApp/user/{{user.id}}/change/"><p class="card-text">Workshops: <br><strong>{{ user.course_1_name }} <br>{{ user.course_2_name }}</strong></p></a>
                                     {% if user.receipt %}
                                         <a href='media/{{ user.receipt }}' class="btn btn-primary" style="width: 100%; margin-bottom: 5px;" alt="Missing">Receipt</a>
                                     {% else %}
