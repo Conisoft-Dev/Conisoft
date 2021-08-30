@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+
+{% block content %}
+<!-- Register -->
+<div style="margin-bottom: 2rem;" class="container py-5">
+	<h1>Update Account</h1>
+	<form method="POST" enctype='multipart/form-data'>
+		{% csrf_token %}
+		{{ account_form|crispy }}
+		<button class="btn btn-primary" type="submit">Update</button>
+	</form>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 col-sm-12">
+			{% for users in returned_objects_dictionary.users %}
+			{% if users.id == user.id %}
+			<div class="col-md-3 col-sm-3">
+				<div class="item">
+					<div class="courses-thumb">
+						<div class="card" style="width: 100%;">
+							<div class="card-body">
+								<a><h3 class="card-title">{{ user.Full_Name }}</h3></a>
+								<a><p class="card-text">{{ user.email }}</p></a>
+								<a><p class="card-text">Workshops: <br><strong>{{ user.course_1_name }} <br>{{ user.course_2_name }}</strong></p></a>
+								<div class="">
+								{% if user.receipt_photo %}
+									<a href='media/{{ user.receipt }}' class="btn btn-primary btn-sm" style="width: 100%; margin-bottom: 5px;" alt="Missing">Receipt Photo</a>
+								{% else %}
+									<a href='/admin/mainApp/user/{{user.id}}/change/' class="btn btn-outline-primary btn-sm" style="width: 100%; margin-bottom: 5px;" alt="Missing">Receipt Photo</a>
+								{% endif %}
+									
+								{% if user.course_1_approval == True %}
+									<a class="btn btn-primary btn-sm" style="width: 100%;">Approved</a>
+								{% else %}
+									<a class="btn btn-outline-primary btn-sm" style="width: 100%;">Not Approved</a>
+								{% endif %}
+								<!-- {% if user.course_2_approval == True %}
+									<a class="btn btn-primary btn-sm" style="width: 100%;">Workshop 2 Approved</a>
+								{% else %}
+									<a class="btn btn-outline-primary btn-sm" style="width: 100%;">Workshop 2 Not Approved</a>
+								{% endif %} -->
+							</div>
+						</div>
+					</div>
+				</div>  
+			</div>
+			{% endif %}
+			{% empty %}
+				<h1>No Results</h1>
+			{% endfor %}  
+		</div>                
+	</div>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+	// Hide presenter info
+	$('#div_id_paper').hide()
+	$('#div_id_industry_type').hide()
+	// Hide Receipt info
+	$('#div_id_guest').hide()
+	// Global Vars
+	var presenter_state = false;
+	var have_receipt_state = false;
+
+	// Show and hide presenter only info
+	$('#div_id_presenter').change(function () {
+		if (presenter_state == false) {
+			$('#div_id_paper').show()
+			$('#div_id_industry_type').show()
+			presenter_state = true;
+		} else {
+			$('#div_id_paper').hide()
+			$('#div_id_industry_type').hide()
+			presenter_state = false;
+		}
+	})
+</script>
+{% endblock scripts %}

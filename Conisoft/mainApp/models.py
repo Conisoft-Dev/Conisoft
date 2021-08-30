@@ -147,20 +147,27 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) # a admin user; non super-user
     admin = models.BooleanField(default=False) # a superuser
-    is_approved = models.BooleanField(default=False) # reciept approval
+
     Full_Name = models.CharField(max_length=200)
     industry_type = models.CharField(max_length=200)
     presenter = models.BooleanField(default=False)
-    receipt = models.ImageField('photo', upload_to='receipts', null=True, blank=True)
+    is_approved = models.BooleanField(default=False) # reciept approval
+
     paper = models.FileField('paper', upload_to='papers', null=True, blank=True)
     guests = models.IntegerField(default=0, null=True)
     workshops_subscribed = models.IntegerField(default=0)
+
+    receipt_photo = models.ImageField('Receipt Photo', upload_to='receipts', null=True, blank=True)
+
     course_1_name = models.CharField(max_length=200, null=True, default='None')
     course_1_id = models.IntegerField(default=0, null=True)
     course_1_link = models.CharField(max_length=200, null=True, default='None')
+    # course_1_approval = models.BooleanField(default=False) # reciept approval
+
     course_2_name = models.CharField(max_length=200, null=True, default='None')
     course_2_id = models.IntegerField(default=0, null=True)
     course_2_link = models.CharField(max_length=200, null=True, default='None')
+    # course_2_approval = models.BooleanField(default=False) # reciept approval
 
 
     # notice the absence of a "Password field", that is built in.

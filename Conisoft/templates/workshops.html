@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-{% csrf_token %}
 
 <!-- Courses -->
 <section id="courses">
@@ -17,15 +16,6 @@
                 <div class="col-md-3 col-sm-3">
                     <div class="item">
                         <div class="courses-thumb">
-                            
-
-                            <!-- <div class="courses-info">
-                                <div class="courses-author">
-                                    <img src='{{ object.presenter_image.url }}' class="img-responsive" alt="">
-                                    <span>{{ object.presenter }}</span>
-                                </div>
-                            </div> -->
-
                             <div class="courses-top">
                                 <div class="courses-image">
                                     <img src="{{ object.image.url }}" class="img-responsive" alt="">
@@ -33,8 +23,13 @@
                                 <div class="courses-price">
                                     <h3><a href="#">{{ object.name }}</a></h3>
                                     <p>{{ object.description }}.</p>
+                                    {% if object.id != user.course_1_id and object.id != user.course_2_id %}
                                     <span class="subscribe_button" style="cursor:pointer;"
                                         data-catid="{{ object.id }}" data-catname="{{ object.name }}" data-catzoom_link="{{ object.zoom_link }}">Attend</span>
+                                    {% else %}
+                                    <span class="" style="cursor:pointer;"
+                                        data-catid="{{ object.id }}" data-catname="{{ object.name }}" data-catzoom_link="{{ object.zoom_link }}">Enrolled</span>
+                                    {% endif %}
                                 </div>
                                 <div class="courses-date">
                                     <div class="courses-author">

@@ -1,9 +1,9 @@
-from django.views.generic import TemplateView, ListView, UpdateView
-from .models import Edition, Topic, PaperRequirement, Course, Carosel, Workshop, User
+from django.views.generic import TemplateView, ListView
+from .models import Edition, Topic, PaperRequirement, Course, Carosel, User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import  render, redirect
-from .forms import NewUserForm, ReceiptForm
+from .forms import NewUserForm, AccountForm
 from django.contrib import messages
 from django.http import HttpResponse
 
@@ -26,25 +26,48 @@ class RegisterView(TemplateView):
     template_name = 'register.html'
 
 class Workshops(ListView):
+    model = User
     course_model = Course
-    user_model = User
     template_name = "workshops.html"
     def as_view():
         def obj_function(request):
-            returned_objects_dictionary = {'courses':Course.objects.all(), 'user':User.objects.all()}
+            returned_objects_dictionary = {'courses':Course.objects.all(), 'users':User.objects.all()}
             return render(request, 'workshops.html', returned_objects_dictionary)
         return obj_function
 	
-	
+class ManageView(ListView):
+    model = User
+    template_name = 'manage.html'
+    context_object_name = 'search_results'
+    def get_queryset(self):
+       result = super(ManageView, self).get_queryset()
+       name_search = self.request.GET.get('name_search')
+       email_search = self.request.GET.get('email_search')
+       approval_search = self.request.GET.get('approval_type')
+       receipt_search = self.request.GET.get('receipt_search')
+       if email_search or approval_search or name_search or receipt_search:
+          postresult = User.objects.filter(Full_Name__contains=name_search, email__contains=email_search, 
+		  is_approved__contains=approval_search, receipt_photo__contains='.')
+          result = postresult
+       else:
+           result = User.objects.all()
 
-# class ManageView(ListView):
-# 	model = User
-# 	template_name = 'manage.html'
-# 	def as_view():
-# 		def obj_function(request):
-# 			users = {'users' : User.objects.all()}
-# 			return render(request, 'manage.html', users)
-# 		return obj_function
+       return result
+
+class AccountView(ListView):
+	def edit_account(request):
+		if request.method == "POST":
+			form = AccountForm(request.POST, request.FILES)
+			if form.is_valid():
+				user = User.objects.get(email = request.user)
+				user.guests = form.cleaned_data['guests']
+				user.receipt = form.cleaned_data['receipt']
+				user.save()
+			return redirect('account')
+		form = AccountForm()
+		returned_objects_dictionary = {'courses':Course.objects.all(), 'users':User.objects.all()}
+		return render(request, 'account.html', context={'account_form': form, 'returned_objects_dictionary':returned_objects_dictionary})
+
 
 def register_request(request):
 	if request.method == "POST":
@@ -59,17 +82,6 @@ def register_request(request):
 	form = NewUserForm()
 	return render (request=request, template_name="register.html", context={"register_form":form})
 
-def receipt_upload(request):
-	if request.method == "POST":
-		form = ReceiptForm(request.POST, request.FILES)
-		if form.is_valid():
-			user = User.objects.get(email = request.user)
-			user.guest = form.cleaned_data['guest']
-			user.receipt = form.cleaned_data['receipt']
-			user.save()
-		return redirect('home')
-	form = ReceiptForm()
-	return render(request = request, template_name='receipt.html', context={'receipt_form': form})
 
 def login_request(request):
 	if request.method == "POST":
@@ -99,7 +111,6 @@ def ajax_subscribe_workshop(request):
 	if request.method == 'GET':
 		if request.user:
 			user = User.objects.get(email=request.user)
-			print(user.workshops_subscribed)
 			if user.workshops_subscribed < 2:
 				user.workshops_subscribed += 1
 				
@@ -128,21 +139,3 @@ def ajax_subscribe_workshop(request):
 		return HttpResponse("Request method is not a GET")
 
 
-
-class SearchView(ListView):
-    model = User
-    template_name = 'manage.html'
-    context_object_name = 'search_results'
-    def get_queryset(self):
-       result = super(SearchView, self).get_queryset()
-       name_search = self.request.GET.get('name_search')
-       email_search = self.request.GET.get('email_search')
-       approval_search = self.request.GET.get('approval_type')
-       if email_search or approval_search or name_search:
-          postresult = User.objects.filter(Full_Name__contains=name_search, email__contains=email_search, is_approved__contains=approval_search)
-          result = postresult
-       else:
-           result = User.objects.all()
-       print(result)
-
-       return result

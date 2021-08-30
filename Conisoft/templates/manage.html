@@ -15,13 +15,20 @@
                     <label for="email_search">Email</label>
                     <input class="add_your_class" type="search" name="email_search"><br>
 
-                    <select class="form-select" aria-label="Default select example" name="approval_type">
-                        <option selected value="">All</option>
-                        <option value="1">Approved</option>
-                        <option value="0">Not Approved</option>
-                      </select>
-                      <br>
-                    <button class="add_your_class" type="submit"> Search </button>
+                    <div style="display: inline-flex; position: relative; left: 2rem;">
+                        <select class="form-select" aria-label="Default select example" name="approval_type" style="margin-right: 1rem;">
+                            <option selected value="">All</option>
+                            <option value="1">Approved</option>
+                            <option value="0">Not Approved</option>
+                        </select>
+    
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" name="receipt_search" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Receipt</label>
+                        </div>
+                    </div>
+                    <br><br>
+                    <button class="add_your_class" type="submit" style="width: 20rem; position: relative; left: 2rem;"> Search </button>
                 </form>
             </div>
         </div> 
@@ -38,13 +45,13 @@
                                     <a href="/admin/mainApp/user/{{user.id}}/change/"><h3 class="card-title">{{ user.Full_Name }}</h3></a>
                                     <a href="/admin/mainApp/user/{{user.id}}/change/"><p class="card-text">{{ user.email }}</p></a>
                                     <a href="/admin/mainApp/user/{{user.id}}/change/"><p class="card-text">Workshops: <br><strong>{{ user.course_1_name }} <br>{{ user.course_2_name }}</strong></p></a>
-                                    {% if user.receipt %}
-                                        <a href='media/{{ user.receipt }}' class="btn btn-primary" style="width: 100%; margin-bottom: 5px;" alt="Missing">Receipt</a>
+                                    {% if user.receipt_photo %}
+                                        <a href='media/{{ user.receipt_photo }}' class="btn btn-primary" style="width: 100%; margin-bottom: 5px;" alt="Missing">View Receipt</a>
                                     {% else %}
                                         <a href='/admin/mainApp/user/{{user.id}}/change/' class="btn btn-outline-primary" style="width: 100%; margin-bottom: 5px;" alt="Missing">No Receipt</a>
                                     {% endif %}
                                         <br>
-                                    {% if user.is_approved == False %}
+                                    {% if user.is_approved == True %}
                                         <a href="/admin/mainApp/user/{{user.id}}/change/" class="btn btn-primary" style="width: 100%;">Approved</a>
                                     {% else %}
                                         <a href="/admin/mainApp/user/{{user.id}}/change/" class="btn btn-outline-primary" style="width: 100%;">Not Approved</a>

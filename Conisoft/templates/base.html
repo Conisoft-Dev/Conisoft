@@ -48,14 +48,14 @@
                          {% if 'register' in request.path or 'login' in request.path or 'workshops' in request.path or 'manage' in request.path or 'receipt' in request.path %}
                               <li><a href="/#home" class="smoothScroll">Home</a></li>
                               <li class ="{% if request.path == '/workshops' %} active {% endif %}"><a href="/workshops" class="smoothScroll">Workshops</a></li>
-                              <li><a href="/#about" class="smoothScroll">Requirments</a></li>
-                              <li><a href="/#testimonial" class="smoothScroll">Past Editions</a></li>
+                              <!-- <li><a href="/#about" class="smoothScroll">Requirments</a></li> -->
+                              <!-- <li><a href="/#testimonial" class="smoothScroll">Past Editions</a></li> -->
                               <li><a href="/#footer" class="smoothScroll">Contact</a></li>
                          {% else %}
                               <li class="active"><a href="#home" class="smoothScroll">Home</a></li>
                               <li><a href="/workshops" class="smoothScroll">Workshops</a></li>
-                              <li><a href="#about" class="smoothScroll">Requirments</a></li>
-                              <li><a href="#testimonial" class="smoothScroll">Past Editions</a></li>
+                              <!-- <li><a href="#about" class="smoothScroll">Requirments</a></li> -->
+                              <!-- <li><a href="#testimonial" class="smoothScroll">Past Editions</a></li> -->
                               <li><a href="#footer" class="smoothScroll">Contact</a></li>
                          {% endif %}
                     </ul>
@@ -74,7 +74,7 @@
                          <li class="{% if request.path == '/register' %} active {% endif %}"><a href="/register">Register</a></li>
                          {% else %}
                          {% if not user.receipt %}
-                         <li class="{% if request.path == '/receipt' %} active {% endif %}"><a href="/receipt">Add Receipt</a></li>
+                         <li class="{% if request.path == '/account' %} active {% endif %}"><a href="/account">Account</a></li>
                          {% endif %}
                          <li><a href="/logout">Logout</a></li>
                          {% endif %}
