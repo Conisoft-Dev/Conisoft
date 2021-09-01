@@ -69,19 +69,20 @@ class Course(models.Model):
     date = models.DateField()
     time_length = models.IntegerField()
     name = models.CharField(max_length=200)
+    email = models.EmailField(max_length=200, default="course@mail.com")
     description = models.CharField(max_length=200)
     presenter = models.CharField(max_length=200)
     image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
     presenter_image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
     taken_slots = models.IntegerField(default=0)
     zoom_link = models.CharField(blank=True, max_length=500)
+    is_approved = models.BooleanField(default=False) # reciept approval
 
-
+    context_object_name = 'Course'
     def __str__(self):
         return "%s by %s" %(self.name, self.presenter)
 
 # Previous additions
-
 class Edition(models.Model):
     year = models.CharField(max_length=4)
     
@@ -139,6 +140,9 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
+
+    context_object_name = 'User'
+
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,

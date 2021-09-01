@@ -7,13 +7,21 @@
     <div class="container">
         <div class="row">
             <div class="section-title">
-                <h2>User Search</h2>
+                <h2>Users / Workshops</h2>
                 <form class="add_your_class" method="GET" action="" >
+
                     <label for="name_search">Name</label>
                     <input class="add_your_class" type="search" name="name_search"><br>
 
                     <label for="email_search">Email</label>
                     <input class="add_your_class" type="search" name="email_search"><br>
+
+                    <select id="test" class="form-select" aria-label="Default select example" style="width: 19rem; position: relative; left: 2rem;">
+                        <option selected value="1">Users</option>
+                        <option value="0">Workshops</option>
+                    </select>
+                    
+                    <br><br>
 
                     <div style="display: inline-flex; position: relative; left: 2rem;">
                         <select class="form-select" aria-label="Default select example" name="approval_type" style="margin-right: 1rem;">
@@ -27,16 +35,21 @@
                             <label class="form-check-label" for="flexSwitchCheckDefault">Receipt</label>
                         </div>
                     </div>
+
                     <br><br>
+
                     <button class="add_your_class" type="submit" style="width: 20rem; position: relative; left: 2rem;"> Search </button>
                 </form>
             </div>
         </div> 
     </div>
+
+
     <div class="container">
-        <div class="row">
+        <div class="row" id="hidden_div">
             <div class="col-md-12 col-sm-12">
                 {% for user in search_results %}
+                {% if not user.taken_slots %}
                 <div class="col-md-3 col-sm-3">
                     <div class="item">
                         <div class="courses-thumb">
@@ -61,12 +74,61 @@
                         </div>
                     </div>  
                 </div>
+                {% endif %}
                 {% empty %}
                     <h1>No Results</h1>
                 {% endfor %}  
             </div>                
         </div>
     </div>
+
+    <div class="container" id="hidden_div2" style="display: none;">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                {% for course in search_results %}
+                {% if course.taken_slots %}
+                <div class="col-md-3 col-sm-3">
+                    <div class="item">
+                        <div class="courses-thumb">
+                            <div class="card" style="width: 100%;">
+                                <div class="card-body">
+                                    <a href="/admin/mainApp/course/{{course.id}}/change/"><h3 class="card-title">{{ course.name }}</h3></a>
+                                    <a href="/admin/mainApp/course/{{course.id}}/change/"><p class="card-text">{{ course.email }}</p></a>
+                                    <a href="/admin/mainApp/course/{{course.id}}/change/"><p class="card-text">Attendants: {{ course.taken_slots }}</p></a>
+                                    <br>
+                                    {% if course.is_approved == True %}
+                                        <a href="/admin/mainApp/course/{{course.id}}/change/" class="btn btn-primary" style="width: 100%;">Approved</a>
+                                    {% else %}
+                                        <a href="/admin/mainApp/course/{{course.id}}/change/" class="btn btn-outline-primary" style="width: 100%;">Not Approved</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+                {% endif %}
+                {% empty %}
+                    <h1>No Results</h1>
+                {% endfor %}  
+                
+            </div>                
+        </div>
+    </div>
 </section>
 
+
+<script>
+    document.getElementById('test').addEventListener('change', function () {
+        var style = this.value == 1 ? 'block' : 'none';
+        document.getElementById('hidden_div').style.display = style;
+    });
+
+    document.getElementById('test').addEventListener('change', function () {
+        var style = this.value == 0 ? 'block' : 'none';
+        document.getElementById('hidden_div2').style.display = style;
+        
+    });
+</script>
+
 {% endblock %}
+

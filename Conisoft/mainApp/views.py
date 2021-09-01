@@ -1,12 +1,12 @@
 from django.views.generic import TemplateView, ListView
-from .models import Edition, Topic, PaperRequirement, Course, Carosel, User
+from .models import Edition, Topic, PaperRequirement, Course, Carosel, User, Workshop
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import  render, redirect
 from .forms import NewUserForm, AccountForm
 from django.contrib import messages
 from django.http import HttpResponse
-
+from itertools import chain
 
 class HomeView(ListView):
     edition_model = Edition
@@ -46,12 +46,21 @@ class ManageView(ListView):
        approval_search = self.request.GET.get('approval_type')
        receipt_search = self.request.GET.get('receipt_search')
        if email_search or approval_search or name_search or receipt_search:
-          postresult = User.objects.filter(Full_Name__contains=name_search, email__contains=email_search, 
-		  is_approved__contains=approval_search, receipt_photo__contains='.')
-          result = postresult
-       else:
-           result = User.objects.all()
 
+          user_results = User.objects.filter(Full_Name__contains=name_search, email__contains=email_search, 
+		  is_approved__contains=approval_search, receipt_photo__contains='.')
+          
+          workshop_results = Course.objects.filter(name__contains=name_search, email__contains=email_search, 
+          is_approved__contains=approval_search)
+          
+          result = (list(chain(user_results, workshop_results)))
+         
+       else:
+           user_results = User.objects.all()
+           workshop_results = Course.objects.all()
+
+           result = (list(chain(user_results, workshop_results)))
+       print(result)
        return result
 
 class AccountView(ListView):
