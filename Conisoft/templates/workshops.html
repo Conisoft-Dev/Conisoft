@@ -10,6 +10,14 @@
             <div class="col-md-12 col-sm-12">
                 <div class="section-title">
                     <h2>Workshops <small>Upgrade your skills with newest courses</small></h2>
+                    <h3>Currently Attending: 
+                        {% if user.course_1_id == 0 and user.course_2_id == 0 %} 0 
+                        {% elif user.course_1_id != 0 and user.course_2_id == 0 %} 1
+                        {% else %} 2 
+                        {% endif %}
+                        / 2
+                    </h3>
+                    <small>(Contact admin to un-enroll from a course)</small>
                 </div>
 
                 {% for object in courses %}
