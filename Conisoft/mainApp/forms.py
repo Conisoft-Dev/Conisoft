@@ -5,6 +5,7 @@ from django.http import request
 from .models import User
 
 
+
 # Create your forms here.
 industry_choices = (
 	('Student', 'Student'),

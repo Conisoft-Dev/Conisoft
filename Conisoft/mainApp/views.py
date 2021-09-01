@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView, ListView
-from .models import Edition, Topic, PaperRequirement, Course, Carosel, User, Workshop
+from .models import Course, Carosel, User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import  render, redirect
@@ -9,30 +9,26 @@ from django.http import HttpResponse
 from itertools import chain
 
 class HomeView(ListView):
-    edition_model = Edition
-    topic_model = Topic
     course_model = Course
-    requirements_model = PaperRequirement
     carosel_model = Carosel
     template_name = "index.html"
     def as_view():
         def obj_function(request):
-            returned_objects_dictionary = {'editions':Edition.objects.all(), 'topics':Topic.objects.all(), 
-            'requirements':PaperRequirement.objects.all(), 'courses':Course.objects.all(), 'carosels':Carosel.objects.all()}
+            returned_objects_dictionary = {'courses':Course.objects.all(), 'carosels':Carosel.objects.all()}
             return render(request, 'index.html', returned_objects_dictionary)
         return obj_function
 
 class RegisterView(TemplateView):
     template_name = 'register.html'
 
-class Workshops(ListView):
+class Courses(ListView):
     model = User
     course_model = Course
-    template_name = "workshops.html"
+    template_name = "courses.html"
     def as_view():
         def obj_function(request):
             returned_objects_dictionary = {'courses':Course.objects.all(), 'users':User.objects.all()}
-            return render(request, 'workshops.html', returned_objects_dictionary)
+            return render(request, 'courses.html', returned_objects_dictionary)
         return obj_function
 	
 class ManageView(ListView):
@@ -48,10 +44,10 @@ class ManageView(ListView):
        if email_search or approval_search or name_search or receipt_search:
 
           user_results = User.objects.filter(Full_Name__contains=name_search, email__contains=email_search, 
-		  is_approved__contains=approval_search, receipt_photo__contains='.')
+		  approved__contains=approval_search, receipt_photo__contains='.')
           
           workshop_results = Course.objects.filter(name__contains=name_search, email__contains=email_search, 
-          is_approved__contains=approval_search)
+          approved__contains=approval_search)
           
           result = (list(chain(user_results, workshop_results)))
          
@@ -120,8 +116,8 @@ def ajax_subscribe_workshop(request):
 	if request.method == 'GET':
 		if request.user:
 			user = User.objects.get(email=request.user)
-			if user.workshops_subscribed < 2:
-				user.workshops_subscribed += 1
+			if user.courses_subscribed < 2:
+				user.courses_subscribed += 1
 				
 				workshop_id = request.GET['workshop_id']
 				workshop_name = request.GET['workshop_name']
@@ -137,13 +133,13 @@ def ajax_subscribe_workshop(request):
 					user.course_2_name = workshop_name
 					user.course_2_link = workshop_link
 
-				subscribed_workshop.taken_slots += 1
+				subscribed_workshop.attendants += 1
 				subscribed_workshop.save()
 				user.save()
 				return HttpResponse("Success!") # Sending an success response
 			else:
-				messages.error(request, 'You have already Subscribed to 2 workshops')
-				return HttpResponse('You have already Subscribed to 2 workshops')
+				messages.error(request, 'You have already Subscribed to 2 courses')
+				return HttpResponse('You have already Subscribed to 2 courses')
 	else:
 		return HttpResponse("Request method is not a GET")
 

@@ -9,7 +9,7 @@
 
             <div class="col-md-12 col-sm-12">
                 <div class="section-title">
-                    <h2>Workshops <small>Upgrade your skills with newest courses</small></h2>
+                    <h2>Courses <small>Upgrade your skills with newest workshops</small></h2>
                     <h3>Currently Attending: 
                         {% if user.course_1_id == 0 and user.course_2_id == 0 %} 0 
                         {% elif user.course_1_id != 0 and user.course_2_id == 0 %} 1
@@ -32,16 +32,18 @@
                                     <h3><a href="#">{{ object.name }}</a></h3>
                                     <p>{{ object.description }}.</p>
                                     {% if user.is_authenticated %}
-                                        {% if object.id != user.course_1_id and object.id != user.course_2_id %}
-                                        <span class="subscribe_button" style="cursor:pointer;"
-                                            data-catid="{{ object.id }}" data-catname="{{ object.name }}" data-catzoom_link="{{ object.zoom_link }}">Attend</span>
-                                        {% else %}
+                                        {% if object.id == user.course_1_id or object.id == user.course_2_id %}
                                         <span class="" style="cursor:pointer;"
-                                            data-catid="{{ object.id }}" data-catname="{{ object.name }}" data-catzoom_link="{{ object.zoom_link }}">Enrolled</span>
+                                            data-catid="{{ object.id }}" data-catname="{{ object.name }}" data-catzoom_link="{{ object.zoom_link }}">Attending</span>
+                                        {% elif user.course_1_id != 0 and user.course_2_id != 0 %}
+                                        <span>Both Enrollments Used</span>
+                                        {% else %}
+                                        <span class="subscribe_button" style="cursor:pointer;"
+                                            data-catid="{{ object.id }}" data-catname="{{ object.name }}" data-catzoom_link="{{ object.zoom_link }}">Enroll Now</span>
                                         {% endif %}
 
                                     {% else %}
-                                    <a href="/login"><span class="subscribe_button" style="cursor:pointer;">Login to View</span></a>
+                                    <a href="/login"><span class="">Login to View</span></a>
                                     {% endif %}
                                 </div>
                                 <div class="courses-date">
@@ -77,14 +79,14 @@
         $.ajax(
             {
                 type: 'GET',
-                url: '/workshops/subscribe',
+                url: '/courses/subscribe',
                 data: {
                     workshop_id: id,
                     workshop_name: name,
                     workshop_link: link,
                 },
                 success: function (data) {
-                    console.log('Workshop' + id + 'Was subscribed to')
+                    alert('Erollment request sent. \n\nIf you have not used both of your enrollment slots an admin will review your request.')
                 }
             }
         )

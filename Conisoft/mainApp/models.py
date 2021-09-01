@@ -1,33 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import (
-    BaseUserManager, AbstractBaseUser, User
+    BaseUserManager, AbstractBaseUser
 )
 
-# user with foriegn key
-# class Attendee(models.Model):
-#     Full_Name = models.CharField(max_length=200)
-#     industry_type = models.CharField(max_length=200)
-#     presenter = models.BooleanField(default=False)
-#     receipt = models.FileField()
-#     guest = models.IntegerField(default=0)
-#     user_id = models.ForeignKey(User, on_delete=models.CASCADE) # Foriegn Key to default user class
-
-#     def __str__(self):
-#         return self.name
-
-
-# Main Workshop Model
-class Workshop(models.Model):
-    name = models.CharField(max_length=200)
-    presenter = models.CharField(max_length=200)
-    description = models.CharField(max_length=500)
-    date = models.DateTimeField()
-    open_slots = models.IntegerField()
-    taken_slots = models.IntegerField(default=0)
-    zoom_link = models.CharField(blank=True, max_length=500)
-
-    def __str__(self):
-        return self.name
 
 # Home page Carosel
 class Carosel(models.Model):
@@ -40,31 +15,7 @@ class Carosel(models.Model):
     def __str__(self):
         return self.heading
 
-# Topics below Carosel
-class Topic(models.Model):
-    name = models.CharField(max_length=200)
-    about1 = models.CharField(max_length=500, null=True)
-    about2 = models.CharField(max_length=500, null=True)
-    about3 = models.CharField(max_length=500, null=True)
-    about4 = models.CharField(max_length=500, null=True)
-    about5 = models.CharField(max_length=500, null=True)
-
-    def __str__(self):
-        return self.name
-
-# Call For Papers
-class PaperRequirement(models.Model):
-    heading = models.CharField(max_length=200)
-    text1 = models.CharField(max_length=200, null=True)
-    text2 = models.CharField(max_length=200, null=True)
-    text3 = models.CharField(max_length=200, null=True)
-    text4 = models.CharField(max_length=200, null=True)
-    text5 = models.CharField(max_length=200, null=True)
-
-    def __str__(self):
-        return self.heading
-
-# Display courses (Workshops)
+# Display courses
 class Course(models.Model):
     date = models.DateField()
     time_length = models.IntegerField()
@@ -72,28 +23,16 @@ class Course(models.Model):
     email = models.EmailField(max_length=200, default="course@mail.com")
     description = models.CharField(max_length=200)
     presenter = models.CharField(max_length=200)
-    image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+    image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100, default="None/conisoft_logo_0SeqbbO.png")
     presenter_image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
-    taken_slots = models.IntegerField(default=0)
+    attendants = models.IntegerField(default=0)
+    max_size = models.IntegerField(default=20)
     zoom_link = models.CharField(blank=True, max_length=500)
-    is_approved = models.BooleanField(default=False) # reciept approval
+    approved = models.BooleanField(default=False) # reciept approval
 
     context_object_name = 'Course'
     def __str__(self):
         return "%s by %s" %(self.name, self.presenter)
-
-# Previous additions
-class Edition(models.Model):
-    year = models.CharField(max_length=4)
-    
-    # path to image location in static resources folder
-    image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
-    link = models.URLField()
-
-    def __str__(self):
-        return "conisoft %s" % self.year
-
-
 
 # New User Model
 class UserManager(BaseUserManager):
@@ -155,11 +94,11 @@ class User(AbstractBaseUser):
     Full_Name = models.CharField(max_length=200)
     industry_type = models.CharField(max_length=200)
     presenter = models.BooleanField(default=False)
-    is_approved = models.BooleanField(default=False) # reciept approval
+    approved = models.BooleanField(default=False) # reciept approval
 
     paper = models.FileField('paper', upload_to='papers', null=True, blank=True)
     guests = models.IntegerField(default=0, null=True)
-    workshops_subscribed = models.IntegerField(default=0)
+    courses_subscribed = models.IntegerField(default=0)
 
     receipt_photo = models.ImageField('Receipt Photo', upload_to='receipts', null=True, blank=True)
 
