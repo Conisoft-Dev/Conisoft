@@ -3,7 +3,6 @@ from .models import (
     User,
     Course,
     Carosel,
-    # Attendee
     )
 # Register your models here.
 admin.site.register(User)
