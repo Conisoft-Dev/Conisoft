@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+{% endblock %}
+
 {% block content %}
 
 <!-- HOME -->
@@ -11,7 +16,7 @@
                <div class="item item-second">
                     <div class="caption">
                          <div class="container">
-                              <div class="col-md-6 col-sm-12">
+                              <div id="slide-text" class="col-md-6 col-sm-12">
                                    <h1>{{ object.heading }}</h1>
                                    <h3>{{ object.text }}
                                    </h3>
