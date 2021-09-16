@@ -41,10 +41,13 @@ class ManageView(ListView):
        email_search = self.request.GET.get('email_search')
        approval_search = self.request.GET.get('approval_type')
        receipt_search = self.request.GET.get('receipt_search')
+
+       print(f'Name: {name_search}\nEmail: {email_search}\nApproval: {approval_search}\nReceipt: {receipt_search}')
+
        if email_search or approval_search or name_search or receipt_search:
 
           user_results = User.objects.filter(Full_Name__contains=name_search, email__contains=email_search, 
-		  approved__contains=approval_search, receipt_photo__contains='.')
+		  approved__contains=approval_search, receipt_photo__contains=receipt_search)
           
           workshop_results = Course.objects.filter(name__contains=name_search, email__contains=email_search, 
           approved__contains=approval_search)
@@ -54,9 +57,8 @@ class ManageView(ListView):
        else:
            user_results = User.objects.all()
            workshop_results = Course.objects.all()
-
            result = (list(chain(user_results, workshop_results)))
-       print(result)
+
        return result
 
 class AccountView(ListView):

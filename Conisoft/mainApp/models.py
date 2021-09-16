@@ -100,7 +100,7 @@ class User(AbstractBaseUser):
     guests = models.IntegerField(default=0, null=True)
     courses_subscribed = models.IntegerField(default=0)
 
-    receipt_photo = models.ImageField('Receipt Photo', upload_to='receipts', null=True, blank=True)
+    receipt_photo = models.ImageField('Receipt Photo', upload_to='receipts', null=True, default='None')
 
     course_1_name = models.CharField(max_length=200, null=True, default='None')
     course_1_id = models.IntegerField(default=0, null=True)
