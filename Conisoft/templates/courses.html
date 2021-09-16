@@ -21,14 +21,14 @@
                 </div>
 
                 {% for object in courses %}
-                <div class="col-md-3 col-sm-3">
+                <div class="col-md-3 col-sm-3" style="margin-top: 4rem;">
                     <div class="item">
                         <div class="courses-thumb">
                             <div class="courses-top">
                                 <div class="courses-image">
                                     <img src="{{ object.image.url }}" class="img-responsive" alt="">
                                 </div>
-                                <div class="courses-price">
+                                <div class="courses-price" style="min-width: 100%;">
                                     <h3><a href="#">{{ object.name }}</a></h3>
                                     <p>{{ object.description }}.</p>
                                     {% if user.is_authenticated %}

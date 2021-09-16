@@ -4,6 +4,7 @@
 {% block content %}
 {% csrf_token %}
 <section id="courses">
+
     <div class="container">
         <div class="row">
             <div class="section-title">
@@ -59,15 +60,15 @@
                                     <a href="/admin/mainApp/user/{{user.id}}/change/"><p class="card-text">{{ user.email }}</p></a>
                                     <a href="/admin/mainApp/user/{{user.id}}/change/"><p class="card-text">Courses: <br><strong>{{ user.course_1_name }} <br>{{ user.course_2_name }}</strong></p></a>
                                     {% if user.receipt_photo %}
-                                        <a href='media/{{ user.receipt_photo }}' class="btn btn-primary" style="width: 100%; margin-bottom: 5px;" alt="Missing">View Receipt</a>
+                                        <a href='media/{{ user.receipt_photo }}' class="btn btn-primary" style="width: 100%; margin-bottom: 5px; background-color: #ca2216; border-radius: 0;" alt="Missing">View Receipt</a>
                                     {% else %}
-                                        <a href='/admin/mainApp/user/{{user.id}}/change/' class="btn btn-outline-primary" style="width: 100%; margin-bottom: 5px;" alt="Missing">No Receipt</a>
+                                        <a href='/admin/mainApp/user/{{user.id}}/change/' class="btn btn-outline-primary" style="width: 100%; background-color: #fc140452; margin-bottom: 5px; border-radius: 0;" alt="Missing">No Receipt</a>
                                     {% endif %}
                                         <br>
                                     {% if user.approved == True %}
-                                        <a href="/admin/mainApp/user/{{user.id}}/change/" class="btn btn-primary" style="width: 100%;">Approved</a>
+                                        <a href="/admin/mainApp/user/{{user.id}}/change/" class="btn btn-primary" style="width: 100%; background-color: #ca2216; border-radius: 0;">Approved</a>
                                     {% else %}
-                                        <a href="/admin/mainApp/user/{{user.id}}/change/" class="btn btn-outline-primary" style="width: 100%;">Not Approved</a>
+                                        <a href="/admin/mainApp/user/{{user.id}}/change/" class="btn btn-outline-primary" style="width: 100%; background-color: #fc140452; border-radius: 0;">Not Approved</a>
                                     {% endif %}
                                 </div>
                             </div>
@@ -88,7 +89,7 @@
                 {% for course in search_results %}
                 {% if course.attendants %}
 
-                <div class="col-md-3 col-sm-3">
+                <div class="col-md-3 col-sm-3" style="margin-top: 4rem;">
                     <div class="item">
                         <div class="courses-thumb">
                             <div class="courses-top">
@@ -103,13 +104,13 @@
 
                                 <span href="/admin/mainApp/course/{{course.id}}/change/">{{ course.presenter }}</span><br>
                                 <a href="/admin/mainApp/course/{{course.id}}/change/"><p class="card-text">{{ course.email }}</p></a>
-                                <span href="/admin/mainApp/course/{{course.id}}/change/"><i class="fa fa-calendar"></i>{{ course.date }}</span><br>
-                                <span href="/admin/mainApp/course/{{course.id}}/change/"><i class="fa fa-clock-o"></i> {{ course.time_length }} Hours</span><br>
+                                <span href="/admin/mainApp/course/{{course.id}}/change/" style="margin-left: 5px;"><i class="fa fa-calendar"></i>{{ course.date }}</span><br>
+                                <span href="/admin/mainApp/course/{{course.id}}/change/"><i class="fa fa-clock-o" style="margin-left: 5px;"></i> {{ course.time_length }} Hours</span><br>
 
                                 {% if course.approved == True %}
-                                    <a href="/admin/mainApp/course/{{course.id}}/change/" class="btn btn-primary" style="width: 100%;">Approved</a>
+                                    <a href="/admin/mainApp/course/{{course.id}}/change/" class="btn btn-primary" style="width: 100%; background-color: #ca2216; border-radius: 0;">Approved</a>
                                 {% else %}
-                                    <span href="/admin/mainApp/course/{{course.id}}/change/" class="btn btn-outline-primary" style="width: 100%;">Not Approved</span>
+                                    <span href="/admin/mainApp/course/{{course.id}}/change/" class="btn btn-outline-primary" style="width: 100%; background-color: #fc140452; border-radius: 0;">Not Approved</span>
                                 {% endif %}
 
                             </div>

@@ -10,7 +10,7 @@
 	<form method="POST" enctype='multipart/form-data'>
 		{% csrf_token %}
 		{{ account_form|crispy }}
-		<button class="btn btn-primary" type="submit">Update</button>
+		<button class="btn btn-primary" type="submit" style="background-color: #ca2216; border-radius: 0;">Update</button>
 	</form>
 </div>
 <div class="container">
@@ -28,15 +28,15 @@
 								<a><p class="card-text">courses: <br><strong>{{ user.course_1_name }} <br>{{ user.course_2_name }}</strong></p></a>
 								<div class="">
 								{% if user.receipt_photo %}
-									<a href='media/{{ user.receipt }}' class="btn btn-primary btn-sm" style="width: 100%; margin-bottom: 5px;" alt="Missing">Receipt Photo</a>
+									<a href='media/{{ user.receipt }}' class="btn btn-primary btn-sm" style="width: 100%; margin-bottom: 5px; background-color: #ca2216; border-radius: 0;" alt="Missing">View Receipt</a>
 								{% else %}
-									<a href='/admin/mainApp/user/{{user.id}}/change/' class="btn btn-outline-primary btn-sm" style="width: 100%; margin-bottom: 5px;" alt="Missing">Receipt Photo</a>
+									<a href='/admin/mainApp/user/{{user.id}}/change/' class="btn btn-outline-primary btn-sm" style="width: 100%; margin-bottom: 5px; background-color: #fc140452; border-radius: 0;" alt="Missing">Receipt Missing</a>
 								{% endif %}
 									
 								{% if user.course_1_approval == True %}
-									<a class="btn btn-primary btn-sm" style="width: 100%;">Approved</a>
+									<a class="btn btn-primary btn-sm" style="width: 100%; background-color: #ca2216; border-radius: 0;">Approved</a>
 								{% else %}
-									<a class="btn btn-outline-primary btn-sm" style="width: 100%;">Not Approved</a>
+									<a class="btn btn-outline-primary btn-sm" style="width: 100%; background-color: #fc140452; border-radius: 0;">Not Approved</a>
 								{% endif %}
 								<!-- {% if user.course_2_approval == True %}
 									<a class="btn btn-primary btn-sm" style="width: 100%;">Workshop 2 Approved</a>
