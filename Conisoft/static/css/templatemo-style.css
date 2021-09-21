@@ -874,6 +874,14 @@ footer .social-icon {
   }
 }
 
+@media screen and (max-width: 768px){
+  .logo{
+    width: 300px !important;
+    margin-top: 1rem !important;
+    padding: 1rem;
+  }
+}
+
 @media only screen and (max-width: 767px) {
   h1 {
     font-size: 2.5em;
@@ -915,6 +923,7 @@ footer .social-icon {
     display: block;
     margin: 0 auto;
   }
+  
 }
 
 @media only screen and (max-width: 580px) {
