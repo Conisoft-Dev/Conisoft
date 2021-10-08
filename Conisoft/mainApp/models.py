@@ -7,7 +7,7 @@ from django.contrib.auth.models import (
 # Home page Carosel
 class Carosel(models.Model):
     heading = models.CharField(max_length=200)
-    text = models.CharField(max_length=500)
+    text = models.CharField(max_length=450)
     background_image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
     logo_image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100, default='path/to/my/default/image.jpg')
 

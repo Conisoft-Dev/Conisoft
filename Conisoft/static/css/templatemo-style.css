@@ -841,6 +841,57 @@ footer .social-icon {
   background: #ca2216;
   color: #ffffff;
 }
+/*---------------------------------------
+     Forms styling
+  -----------------------------------------*/
+#register-container h1{
+  text-align: center;
+}
+
+.form-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #d4d4d4;
+  border-radius: 25px;
+  padding: 2rem;
+  margin: auto;
+  width: fit-content;
+  margin-bottom: 4rem;
+}
+
+.form-container div{
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.controls{
+  color: #737373;
+  margin-bottom: 2rem;
+}
+
+.checkbox{
+  color: #333 !important;
+}
+
+.
+
+.account-container{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5rem;
+}
+
+.search-container{
+  background-color:#a8a8a8;
+  border-radius: 25px;
+  width: fit-content;
+  margin:auto;
+  padding:3rem;
+}
 
 /*---------------------------------------
      RESPONSIVE STYLES              

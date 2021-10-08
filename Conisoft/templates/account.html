@@ -7,18 +7,18 @@
 <!-- Register -->
 <div style="margin-bottom: 2rem;" class="container py-5">
 	<h1>Update Account</h1>
-	<form method="POST" enctype='multipart/form-data'>
+	<form method="POST" class="form-container" enctype='multipart/form-data'>
 		{% csrf_token %}
 		{{ account_form|crispy }}
 		<button class="btn btn-primary" type="submit" style="background-color: #ca2216; border-radius: 0;">Update</button>
 	</form>
 </div>
-<div class="container">
+<div class="container account-container">
 	<div class="row">
 		<div class="col-md-12 col-sm-12">
 			{% for users in returned_objects_dictionary.users %}
 			{% if users.id == user.id %}
-			<div class="col-md-3 col-sm-3">
+			<div>
 				<div class="item">
 					<div class="courses-thumb">
 						<div class="card" style="width: 100%;">

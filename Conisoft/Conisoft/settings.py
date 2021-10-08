@@ -24,9 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-vktrs(sw1z6#ra@$g&7o5wgdyy!ux@6cvn&)-ab+qcd9h7s))t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+
 
 
 # Application definition
@@ -145,3 +148,10 @@ STATICFILES_DIRS = [
 # Image Model Settings
 MEDIA_URL = '/media/' 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+# sergios settings
+
+# STATIC_URL = "/static/"
+# STATIC_ROOT = BASE_DIR / "static"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

@@ -1,4 +1,4 @@
-#!/home/root/Auto-Django/venv/bin/python3
+#!/home/shay/projects/Conisoft/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
