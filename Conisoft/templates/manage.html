@@ -78,7 +78,7 @@
                                                 <br>{{user.course_2_name }}</strong></p>
                                     </a>
                                     {% if user.receipt_photo != 'None' %}
-                                    <a href='media/{{ user.receipt_photo }}' class="btn btn-primary"
+                                    <a href='{{ user.receipt_photo.url}}' class="btn btn-primary"
                                         style="width: 100%; margin-bottom: 5px; background-color: #ca2216; border-radius: 0;"
                                         alt="Missing">View Receipt</a>
                                     {% else %}

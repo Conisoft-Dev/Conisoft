@@ -8,8 +8,8 @@ from django.contrib.auth.models import (
 class Carosel(models.Model):
     heading = models.CharField(max_length=200)
     text = models.CharField(max_length=450)
-    background_image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
-    logo_image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100, default='path/to/my/default/image.jpg')
+    background_image = models.ImageField(upload_to='images/', height_field=None, width_field=None, max_length=100)
+    logo_image = models.ImageField(upload_to='images/', height_field=None, width_field=None, max_length=100, default='path/to/my/default/image.jpg')
 
 
     def __str__(self):
@@ -23,8 +23,8 @@ class Course(models.Model):
     email = models.EmailField(max_length=200, default="course@mail.com")
     description = models.CharField(max_length=200)
     presenter = models.CharField(max_length=200)
-    image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100, default="None/conisoft_logo_0SeqbbO.png")
-    presenter_image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+    image = models.ImageField(upload_to='images/', height_field=None, width_field=None, max_length=100, default="None/conisoft_logo_0SeqbbO.png")
+    presenter_image = models.ImageField(upload_to='images/', height_field=None, width_field=None, max_length=100)
     attendants = models.IntegerField(default=0)
     max_size = models.IntegerField(default=20)
     zoom_link = models.CharField(blank=True, max_length=500)
@@ -96,11 +96,11 @@ class User(AbstractBaseUser):
     presenter = models.BooleanField(default=False)
     approved = models.BooleanField(default=False) # reciept approval
 
-    paper = models.FileField('paper', upload_to='papers', null=True, blank=True)
+    paper = models.FileField('paper', upload_to='papers/', null=True, blank=True)
     guests = models.IntegerField(default=0, null=True)
     courses_subscribed = models.IntegerField(default=0)
 
-    receipt_photo = models.ImageField('Receipt Photo', upload_to='receipts', null=True, default='None')
+    receipt_photo = models.ImageField('Receipt Photo', upload_to='receipts/', null=True, default='None')
 
     course_1_name = models.CharField(max_length=200, null=True, default='None')
     course_1_id = models.IntegerField(default=0, null=True)

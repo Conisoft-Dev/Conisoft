@@ -43,10 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'mainApp',
+    'storages',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -129,29 +131,35 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+STATIC_ROOT = BASE_DIR / "staticFiles"
 
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    str(BASE_DIR.joinpath('static'))
+    str(BASE_DIR.joinpath('static/')),
 ]
 
+
+# Azure Storage settings
+AZURE_ACCOUNT_NAME = 'testmediastorage'
+AZURE_ACCOUNT_KEY = 'ddgHYoCovVAE5W+SMJe61Y8F+xeKTI84cbux2smXfXMF0yBNWiaaue2Nx2kLT824PiqmpYqM1pivsP+DAV+AhQ==' # Must be replaced by your <storage_account_key>
+AZURE_CONTAINER = 'media'
+AZURE_CONTAINER_URL = 'https://testmediastorage.blob.core.windows.net/media'
+AZURE_CONTAINER_SSL = True
+AZURE_CONTAINER_SSL_URL= 'https://testmediastorage.blob.core.windows.net/media'
+AZURE_URL_EXPIRATION_SECS = 12000
+AZURE_URL_EXPIRATION_SECS_SSL = 12000
+AZURE_CONNECTION_STRING = 'DefaultEndpointsProtocol=https;AccountName=testmediastorage;AccountKey=ddgHYoCovVAE5W+SMJe61Y8F+xeKTI84cbux2smXfXMF0yBNWiaaue2Nx2kLT824PiqmpYqM1pivsP+DAV+AhQ==;EndpointSuffix=core.windows.net'
+DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+
+# MEDIA_LOCATION = "media"
+
 # Image Model Settings
-MEDIA_URL = '/media/' 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
-# sergios settings
-
-# STATIC_URL = "/static/"
-# STATIC_ROOT = BASE_DIR / "static"
-# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# MEDIA_URL = '/media/' 
+# MEDIA_ROOT = f'https://{AZURE_CUSTOM_DOMAIN}/{MEDIA_LOCATION}/'

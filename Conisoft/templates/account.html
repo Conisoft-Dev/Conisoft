@@ -10,7 +10,8 @@
 	<form method="POST" class="form-container" enctype='multipart/form-data'>
 		{% csrf_token %}
 		{{ account_form|crispy }}
-		<button class="btn btn-primary" type="submit" style="background-color: #ca2216; border-radius: 0;">Update</button>
+		<button class="btn btn-primary" type="submit"
+			style="background-color: #ca2216; border-radius: 0;">Update</button>
 	</form>
 </div>
 <div class="container account-container">
@@ -23,63 +24,95 @@
 					<div class="courses-thumb">
 						<div class="card" style="width: 100%;">
 							<div class="card-body">
-								<a><h3 class="card-title">{{ user.Full_Name }}</h3></a>
-								<a><p class="card-text">{{ user.email }}</p></a>
-								<a><p class="card-text">courses: <br><strong>{{ user.course_1_name }} <br>{{ user.course_2_name }}</strong></p></a>
+								<a>
+									<h3 class="card-title">{{ user.Full_Name }}</h3>
+								</a>
+								<a>
+									<p class="card-text">{{ user.email }}</p>
+								</a>
+								<div style="width: 50%;">
+									<h4>Courses: </h4>
+									<div style="display: flex; justify-content: space-evenly;">
+										<p><strong style="color: rgb(44, 44, 44);">Name: </strong>{{ user.course_1_name }}</p>
+										<p><strong style="color: rgb(44, 44, 44);">Link: </strong><a href="{{ user.course_1_link }}" style="color: #ca2216; cursor: pointer;">{{ user.course_1_link }}</a></p>
+									</div>
+									<div style="display: flex; justify-content: space-evenly;">
+										<p><strong style="color: rgb(44, 44, 44);">Name: </strong>{{ user.course_2_name }}</p>
+										<p><strong style="color: rgb(44, 44, 44);">Link: </strong><a href="{{ user.course_2_link }}" style="color: #ca2216; cursor: pointer;">{{ user.course_2_link }}</a></p>
+									</div>
+								</div>
+
+
+								<!-- <p class="card-text">courses: <br>
+									<strong>Name: {{ user.course_1_name }}
+										Zoom <span style="width: 25px;"></span> Link: <a href="{{ user.course_1_link }}"
+											style="color: #ca2216; cursor: pointer;">{{ user.course_1_link }}</a>
+										<br>Name: {{ user.course_2_name }}
+										Zoom <span style="width: 25px;"></span> Link: <a href="{{ user.course_1_link }}"
+											style="color: #ca2216; cursor: pointer;">{{ user.course_2_link }}</a>
+									</strong>
+								</p> -->
 								<div class="">
 									{% if user.receipt_photo != 'None' %}
-									<a href='media/{{ user.receipt_photo }}' class="btn btn-primary" style="width: 100%; margin-bottom: 5px; background-color: #ca2216; border-radius: 0;" alt="Missing">View Receipt</a>
-								{% else %}
-									<a href='/admin/mainApp/user/{{user.id}}/change/' class="btn btn-outline-primary" style="width: 100%; background-color: #fc140452; margin-bottom: 5px; border-radius: 0;" alt="Missing">No Receipt</a>
-								{% endif %}
-									
-								{% if user.course_1_approval == True %}
-									<a class="btn btn-primary btn-sm" style="width: 100%; background-color: #ca2216; border-radius: 0;">Approved</a>
-								{% else %}
-									<a class="btn btn-outline-primary btn-sm" style="width: 100%; background-color: #fc140452; border-radius: 0;">Not Approved</a>
-								{% endif %}
-								<!-- {% if user.course_2_approval == True %}
+									<a href='{{ user.receipt_photo.url }}' class="btn btn-primary"
+										style="width: 100%; margin-bottom: 5px; background-color: #ca2216; border-radius: 0;"
+										alt="Missing">View Receipt</a>
+									{% else %}
+									<a href='/admin/mainApp/user/{{user.id}}/change/' class="btn btn-outline-primary"
+										style="width: 100%; background-color: #fc140452; margin-bottom: 5px; border-radius: 0;"
+										alt="Missing">No Receipt</a>
+									{% endif %}
+
+									{% if user.course_1_approval == True %}
+									<a class="btn btn-primary btn-sm"
+										style="width: 100%; background-color: #ca2216; border-radius: 0;">Approved</a>
+									{% else %}
+									<a class="btn btn-outline-primary btn-sm"
+										style="width: 100%; background-color: #fc140452; border-radius: 0;">Not
+										Approved</a>
+									{% endif %}
+									<!-- {% if user.course_2_approval == True %}
 									<a class="btn btn-primary btn-sm" style="width: 100%;">Workshop 2 Approved</a>
 								{% else %}
 									<a class="btn btn-outline-primary btn-sm" style="width: 100%;">Workshop 2 Not Approved</a>
 								{% endif %} -->
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>  
-			</div>
-			{% endif %}
-			{% empty %}
+				</div>
+				{% endif %}
+				{% empty %}
 				<h1>No Results</h1>
-			{% endfor %}  
-		</div>                
+				{% endfor %}
+			</div>
+		</div>
 	</div>
-</div>
-{% endblock %}
+	{% endblock %}
 
 
-{% block scripts %}
-<script>
-	// Hide presenter info
-	$('#div_id_paper').hide()
-	$('#div_id_industry_type').hide()
-	// Hide Receipt info
-	$('#div_id_guest').hide()
-	// Global Vars
-	var presenter_state = false;
-	var have_receipt_state = false;
+	{% block scripts %}
+	<script>
+		// Hide presenter info
+		$('#div_id_paper').hide()
+		$('#div_id_industry_type').hide()
+		// Hide Receipt info
+		$('#div_id_guest').hide()
+		// Global Vars
+		var presenter_state = false;
+		var have_receipt_state = false;
 
-	// Show and hide presenter only info
-	$('#div_id_presenter').change(function () {
-		if (presenter_state == false) {
-			$('#div_id_paper').show()
-			$('#div_id_industry_type').show()
-			presenter_state = true;
-		} else {
-			$('#div_id_paper').hide()
-			$('#div_id_industry_type').hide()
-			presenter_state = false;
-		}
-	})
-</script>
-{% endblock scripts %}
+		// Show and hide presenter only info
+		$('#div_id_presenter').change(function () {
+			if (presenter_state == false) {
+				$('#div_id_paper').show()
+				$('#div_id_industry_type').show()
+				presenter_state = true;
+			} else {
+				$('#div_id_paper').hide()
+				$('#div_id_industry_type').hide()
+				presenter_state = false;
+			}
+		})
+	</script>
+	{% endblock scripts %}
