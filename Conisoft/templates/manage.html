@@ -74,7 +74,7 @@
                                         <p class="card-text">{{ user.email }}</p>
                                     </a>
                                     <a href="/admin/mainApp/user/{{user.id}}/change/">
-                                        <p class="card-text">Courses: <br><strong>{{ user.course_1_name }}
+                                        <p class="card-text">Workshop: <br><strong>{{ user.course_1_name }}
                                                 <br>{{user.course_2_name }}</strong></p>
                                     </a>
                                     {% if user.receipt_photo != 'None' %}
@@ -127,6 +127,7 @@
 
                                 <a href="/admin/mainApp/course/{{course.id}}/change/">
                                     <p class="card-text">Attendants: {{ course.attendants }} / {{ course.max_size }}</p>
+                                    {% for }
                                 </a>
 
                                 <span href="/admin/mainApp/course/{{course.id}}/change/">{{ course.presenter
@@ -153,33 +154,6 @@
                     </div>
                 </div>
 
-
-                <!-- <div class="col-md-3 col-sm-3">
-                    <div class="item">
-                        <div class="courses-thumb">
-                            <div class="card" style="width: 100%;">
-                                <div class="card-body">
-                                    <a href="/admin/mainApp/course/{{course.id}}/change/"><h3 class="card-title">{{ course.name }}</h3></a>
-                                    <a href="/admin/mainApp/course/{{course.id}}/change/"><p class="card-text">Attendants: {{ course.attendants }} / {{ course.max_size }}</p></a>
-                                    <a href="/admin/mainApp/course/{{course.id}}/change/"><p class="card-text">{{ course.email }}</p></a>
-                                    <a href="/admin/mainApp/course/{{course.id}}/change/"><p><i class="fa fa-clock-o"></i> {{ course.time_length }} Hours</p></a>
-                                    
-                                    <div class="courses-author">
-                                        <img src='{{ object.presenter_image.url }}' class="img-responsive" alt="">
-                                        <span>{{ object.presenter }}</span>
-                                    </div>
-                                    <span><i class="fa fa-calendar"></i>{{ course.date }}</span>
-                                    
-                                    {% if course.approved == True %}
-                                        <a href="/admin/mainApp/course/{{course.id}}/change/" class="btn btn-primary" style="width: 100%;">Approved</a>
-                                    {% else %}
-                                        <a href="/admin/mainApp/course/{{course.id}}/change/" class="btn btn-outline-primary" style="width: 100%;">Not Approved</a>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>  
-                </div> -->
                 {% endif %}
                 {% empty %}
                 <h1>No Results</h1>

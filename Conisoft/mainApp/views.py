@@ -61,6 +61,16 @@ class ManageView(ListView):
 
        return result
 
+class AdminCourseView(ListView):
+    model = User
+    course_model = Course
+    template_name = "adminCourse.html"
+    def as_view():
+        def obj_function(request):
+            returned_objects_dictionary = {'courses':Course.objects.all(), 'users':User.objects.all()}
+            return render(request, 'adminCourse.html', returned_objects_dictionary)
+        return obj_function
+
 class AccountView(ListView):
 	def edit_account(request):
 		if request.method == "POST":
@@ -118,31 +128,27 @@ def ajax_subscribe_workshop(request):
 	if request.method == 'GET':
 		if request.user:
 			user = User.objects.get(email=request.user)
-			if user.courses_subscribed < 2:
+			if user.courses_subscribed != 1 & user.approved == True:
 				user.courses_subscribed += 1
-				
 				workshop_id = request.GET['workshop_id']
 				workshop_name = request.GET['workshop_name']
 				workshop_link = request.GET['workshop_link']
 				subscribed_workshop = Course.objects.get(id = workshop_id)
 
-				if user.course_1_id == 0:
-					user.course_1_id = workshop_id
-					user.course_1_name = workshop_name
-					user.course_1_link = workshop_link
-				elif user.course_2_id == 0:
-					user.course_2_id = workshop_id
-					user.course_2_name = workshop_name
-					user.course_2_link = workshop_link
+				user.course_1_id = workshop_id
+				user.course_1_name = workshop_name
+				user.course_1_link = workshop_link
 
 				subscribed_workshop.attendants += 1
 				subscribed_workshop.save()
 				user.save()
-				return HttpResponse("Success!") # Sending an success response
+				messages.success(request, 'You have been succesfully added to the Workshop')
+				return redirect('courses')
+			elif user.approved == False:
+				return redirect('courses')
+				messages.error(request, "Error. You have not been aprroved yet, please wait.")
 			else:
-				messages.error(request, 'You have already Subscribed to 2 courses')
-				return HttpResponse('You have already Subscribed to 2 courses')
+				return redirect('courses')
+				messages.error(request, 'You have already Subscribed to a Workshop')
 	else:
 		return HttpResponse("Request method is not a GET")
-
-

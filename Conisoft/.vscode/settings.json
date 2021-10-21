@@ -1,5 +1,6 @@
 {
     "appService.defaultWebAppToDeploy": "None",
     "appService.deploySubpath": ".",
-    "appService.showBuildDuringDeployPrompt": false
+    "appService.showBuildDuringDeployPrompt": false,
+    "python.formatting.provider": "black"
 }

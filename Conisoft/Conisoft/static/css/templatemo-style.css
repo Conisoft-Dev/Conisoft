@@ -567,6 +567,7 @@ section {
 .courses-price {
   float: right;
   margin-top: 10px;
+  margin-bottom: 2rem;
 }
 
 .courses-price span {

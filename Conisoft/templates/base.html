@@ -48,13 +48,13 @@
                     <ul class="nav navbar-nav">
                          {% if 'register' in request.path or 'login' in request.path or 'courses' in request.path or 'manage' in request.path or 'receipt' in request.path %}
                               <li><a href="/#home" class="smoothScroll">Home</a></li>
-                              <li class ="{% if request.path == '/courses' %} active {% endif %}"><a href="/courses" class="smoothScroll">Courses</a></li>
+                              <li class ="{% if request.path == '/courses' %} active {% endif %}"><a href="/courses" class="smoothScroll">Workshops</a></li>
                               <!-- <li><a href="/#about" class="smoothScroll">Requirments</a></li> -->
                               <!-- <li><a href="/#testimonial" class="smoothScroll">Past Editions</a></li> -->
                               <li><a href="/#footer" class="smoothScroll">Contact</a></li>
                          {% else %}
                               <li class="active"><a href="#home" class="smoothScroll">Home</a></li>
-                              <li><a href="/courses" class="smoothScroll">Courses</a></li>
+                              <li><a href="/courses" class="smoothScroll">Workshops</a></li>
                               <!-- <li><a href="#about" class="smoothScroll">Requirments</a></li> -->
                               <!-- <li><a href="#testimonial" class="smoothScroll">Past Editions</a></li> -->
                               <li><a href="#footer" class="smoothScroll">Contact</a></li>
@@ -64,6 +64,10 @@
                     <ul class="nav navbar-nav navbar-right">
                          {% if user.is_admin %}
                          <li><a href="/admin">Admin</a></li>
+                         {% endif %}
+
+                         {% if user.is_staff %}
+                         <li class ="{% if request.path == '/workshops/detail' %} active {% endif %}"><a href="/workshops/detail">Details</a></li>
                          {% endif %}
 
                          {% if user.is_staff %}

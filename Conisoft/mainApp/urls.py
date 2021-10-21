@@ -7,6 +7,7 @@ from .views import (
 	Courses,
 	ajax_subscribe_workshop,
 	ManageView,
+	AdminCourseView
 )
 
 urlpatterns = [
@@ -18,5 +19,6 @@ urlpatterns = [
 	path('courses/subscribe', views.ajax_subscribe_workshop, name='subscribe_workshop'),
 	path('manage', ManageView.as_view(), name='manage'),
 	path('account', AccountView.edit_account, name='account'),
+	path('workshops/detail', AdminCourseView.as_view(), name='adminCourse'),
 ]
 

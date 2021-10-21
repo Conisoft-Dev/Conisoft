@@ -15,9 +15,10 @@ class Carosel(models.Model):
     def __str__(self):
         return self.heading
 
-# Display courses
+
 class Course(models.Model):
     date = models.DateField()
+    time = models.TimeField()
     time_length = models.IntegerField()
     name = models.CharField(max_length=200)
     email = models.EmailField(max_length=200, default="course@mail.com")
@@ -102,14 +103,14 @@ class User(AbstractBaseUser):
 
     receipt_photo = models.ImageField('Receipt Photo', upload_to='receipts/', null=True, default='None')
 
-    course_1_name = models.CharField(max_length=200, null=True, default='None')
+    course_1_name = models.CharField(max_length=200, null=True, blank=True, default='None')
     course_1_id = models.IntegerField(default=0, null=True)
     course_1_link = models.CharField(max_length=200, null=True, default='None')
     # course_1_approval = models.BooleanField(default=False) # reciept approval
 
-    course_2_name = models.CharField(max_length=200, null=True, default='None')
-    course_2_id = models.IntegerField(default=0, null=True)
-    course_2_link = models.CharField(max_length=200, null=True, default='None')
+    # course_2_name = models.CharField(max_length=200, null=True, blank=True, default='None')
+    # course_2_id = models.IntegerField(default=0, null=True)
+    # course_2_link = models.CharField(max_length=200, null=True, default='None')
     # course_2_approval = models.BooleanField(default=False) # reciept approval
 
 
