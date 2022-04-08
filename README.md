@@ -2,5 +2,5 @@
 
 Django admin creds:
 
-username: conisoft
-password: sdgku@conisoft
+username: redacted
+password: redacted
